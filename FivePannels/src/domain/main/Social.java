@@ -25,4 +25,11 @@ public class Social
     {
         return Collections.unmodifiableSet(outGoingRequest);
     }
+
+    public void sendRequest(User sender, User receiver){
+
+        incomingRequests.add(receiver);
+        outGoingRequest.add(sender);
+
+    }
 }
