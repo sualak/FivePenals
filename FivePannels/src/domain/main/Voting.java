@@ -138,11 +138,6 @@ public class Voting
         }
     }
 
-    public void test()
-    {
-        
-    }
-
     //veralted
 //    private void calcResult()
 //    {
