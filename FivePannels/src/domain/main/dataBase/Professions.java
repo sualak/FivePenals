@@ -1,4 +1,4 @@
-package main;
+package main.dataBase;
 
 public class Professions
 {
@@ -20,8 +20,10 @@ public class Professions
     {
         return type;
     }
+
+    public enum ProfessionType{
+        CHIROG
+    }
 }
 
-enum ProfessionType{
-    CHIROG
-}
+

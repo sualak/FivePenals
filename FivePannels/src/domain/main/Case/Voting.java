@@ -1,4 +1,8 @@
-package main;
+package main.Case;
+
+import main.dataBase.Professions;
+import main.dataBase.Keywords;
+import main.user.User;
 
 import java.util.*;
 

@@ -1,4 +1,6 @@
-package main;
+package main.dataBase;
+
+
 
 
 import java.io.BufferedReader;
@@ -82,7 +84,7 @@ public class DataBaseGIdentifiers
 
         for (int i = 0; i < records.size(); i++)
         {
-            allProfessions.put( i , new Professions(records.get(i).get(0), ProfessionType.valueOf(records.get(i).get(1))));
+            allProfessions.put( i , new Professions(records.get(i).get(0), Professions.ProfessionType.valueOf(records.get(i).get(1))));
         }
     }
 
@@ -99,7 +101,7 @@ public class DataBaseGIdentifiers
 
         for (int i = 0; i < records.size(); i++)
         {
-            allKeywords.put( i , new Keywords(records.get(i).get(0), KeywordType.valueOf(records.get(i).get(1))));
+            allKeywords.put( i , new Keywords(records.get(i).get(0), Keywords.KeywordType.valueOf(records.get(i).get(1))));
         }
     }
 }

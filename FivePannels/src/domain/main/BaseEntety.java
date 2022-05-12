@@ -34,9 +34,12 @@ public abstract class BaseEntety
     {
         return type;
     }
+
+    public enum IDType{
+        USER, CASE
+    }
 }
 
 
-enum IDType{
-    USER, CASE
-}
+
+

@@ -1,4 +1,4 @@
-package main;
+package main.dataBase;
 
 public class Location
 {
@@ -20,8 +20,10 @@ public class Location
     {
         return type;
     }
+
+    public enum LocationType{
+
+    }
 }
 
-enum LocationType{
 
-}
