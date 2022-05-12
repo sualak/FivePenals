@@ -1,4 +1,6 @@
-package main;
+package main.user;
+
+import main.user.User;
 
 import java.util.Collections;
 import java.util.HashSet;

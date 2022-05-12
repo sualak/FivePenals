@@ -1,5 +1,10 @@
 package main;
 
+import main.Case.Case;
+import main.dataBase.DataBaseGIdentifiers;
+import main.user.ScoreEntry;
+import main.user.User;
+
 import java.io.IOException;
 
 public class PlayGround

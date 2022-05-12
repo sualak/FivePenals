@@ -1,4 +1,4 @@
-package main;
+package main.user;
 
 import java.time.LocalDate;
 
@@ -36,8 +36,10 @@ public class Personal
     {
         return birthday;
     }
+
+    public enum Titel{
+
+    }
 }
 
-enum Titel{
 
-}

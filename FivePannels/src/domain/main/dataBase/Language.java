@@ -1,4 +1,4 @@
-package main;
+package main.dataBase;
 
 public class Language
 {
@@ -20,8 +20,10 @@ public class Language
     {
         return type;
     }
+
+    public enum LanguagType{
+
+    }
 }
 
-enum LanguagType{
 
-}

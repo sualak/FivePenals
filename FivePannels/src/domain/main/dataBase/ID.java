@@ -1,4 +1,7 @@
-package main;
+package main.dataBase;
+
+import main.Case.Case;
+import main.user.User;
 
 import java.util.Collections;
 import java.util.HashMap;

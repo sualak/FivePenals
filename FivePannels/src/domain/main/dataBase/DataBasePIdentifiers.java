@@ -1,4 +1,5 @@
-package main;
+package main.dataBase;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -79,7 +80,7 @@ public class DataBasePIdentifiers
 
         for (int i = 0; i < records.size(); i++)
         {
-            allLocations.put( i , new Location(records.get(i).get(0), LocationType.valueOf(records.get(i).get(1))));
+            allLocations.put( i , new Location(records.get(i).get(0), Location.LocationType.valueOf(records.get(i).get(1))));
         }
     }
 
@@ -96,7 +97,7 @@ public class DataBasePIdentifiers
 
         for (int i = 0; i < records.size(); i++)
         {
-            allLanguages.put( i , new Language(records.get(i).get(0), LanguagType.valueOf(records.get(i).get(1))));
+            allLanguages.put( i , new Language(records.get(i).get(0), Language.LanguagType.valueOf(records.get(i).get(1))));
         }
     }
 }

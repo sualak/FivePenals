@@ -1,6 +1,7 @@
 package validation;
 
-import main.*;
+import main.Case.Case;
+import main.user.User;
 
 import java.util.*;
 

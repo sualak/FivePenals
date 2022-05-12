@@ -1,4 +1,4 @@
-package main;
+package main.Case;
 
 import java.time.Instant;
 

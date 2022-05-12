@@ -1,4 +1,4 @@
-package main;
+package main.dataBase;
 
 public class Keywords
 {
@@ -20,8 +20,10 @@ public class Keywords
     {
         return type;
     }
+
+    public enum KeywordType{
+        TEST
+    }
 }
 
-enum KeywordType{
-    TEST
-}
+

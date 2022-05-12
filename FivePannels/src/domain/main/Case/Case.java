@@ -1,5 +1,11 @@
-package main;
+package main.Case;
 
+
+import main.*;
+import main.dataBase.DataBaseGIdentifiers;
+import main.dataBase.Keywords;
+import main.dataBase.Professions;
+import main.user.User;
 import validation.Ensure;
 
 import java.util.*;
