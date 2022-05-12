@@ -1,9 +1,6 @@
 package validation;
 
-import main.Case;
-import main.DataBeseGIdentifiers;
-import main.Professions;
-import main.User;
+import main.*;
 
 import java.util.*;
 
@@ -153,4 +150,31 @@ public abstract class Ensure
 
         return isOpen;
     }
+
+    //---------------------------CASE ENSURERS----------------------------------------------------------
+
+    public static User ensureUserValid(User user, List<User> users, User owner)
+    {
+        isNotNull(user,"User");
+        if(isContainedList(user, users))
+        {
+            throw new IllegalArgumentException("User has already been added to the Case");
+        }
+        if (equals(user, owner))
+        {
+            throw new IllegalArgumentException("You can not add yourself to the Case");
+        }
+        return user;
+    }
+
+//    public static Section ensureSectionValid(Case c, Section s, User owner)
+//    {
+//        //
+//        isNotNull(s, "Section");
+//        if(!c.isOpen())
+//        {
+//
+//        }
+//
+//    }
 }
