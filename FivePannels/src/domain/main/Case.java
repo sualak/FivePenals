@@ -1,5 +1,7 @@
 package main;
 
+import validation.Ensure;
+
 import java.util.*;
 
 public class Case extends BaseEntety
@@ -74,6 +76,17 @@ public class Case extends BaseEntety
 
     public void addUser(User user)
     {
-        users.add(user);
+        users.add(Ensure.ensureUserValid(user, users, owner));
     }
+
+    public void resetVoting(String question)
+    {
+        Ensure.ensureStringValid(question, "Question");
+        this.voting = new Voting(question, this);
+    }
+
+//    public void addSection(Section section)
+//    {
+//        sections.add();
+//    }
 }

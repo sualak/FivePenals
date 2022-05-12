@@ -63,7 +63,6 @@ public class Score
         LocalDate end = LocalDate.ofInstant(endDate, ZoneId.systemDefault());
         List<LocalDate> dateList = start.datesUntil(end ,period).toList();
         int lastListEntry = (dateList.size() - 1);
-
         if(!end.equals(dateList.get(lastListEntry)))
             dateList.add(end);
 
