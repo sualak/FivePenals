@@ -81,12 +81,12 @@ public class User extends BaseEntety
         return Collections.unmodifiableSet(cases);
     }
 
-    public void addProfession(int key, DataBeseGIdentifiers db)
+    public void addProfession(int key, DataBaseGIdentifiers db)
     {
         this.profession = db.getProfession(1);
     }
 
-    public void addKeyword(int key, DataBeseGIdentifiers db)
+    public void addKeyword(int key, DataBaseGIdentifiers db)
     {
         keywords.add(db.getKeyword(1));
     }

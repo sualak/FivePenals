@@ -1,10 +1,6 @@
 package main;
 
-import validation.Ensure;
-
 import java.io.IOException;
-import java.time.Instant;
-import java.util.List;
 
 public class PlayGround
 {
@@ -13,7 +9,7 @@ public class PlayGround
         User u = new User();
         User u2 = new User();
         User u3 = new User();
-        DataBeseGIdentifiers db = new DataBeseGIdentifiers();
+        DataBaseGIdentifiers db = new DataBaseGIdentifiers();
 
         Case c = new Case("testT", "testQ", u);
         c.getVoting().setAnswers("test");

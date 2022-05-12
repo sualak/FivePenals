@@ -64,12 +64,12 @@ public class Case extends BaseEntety
         return isOpen;
     }
 
-    public void addProfession(int key, DataBeseGIdentifiers db)
+    public void addProfession(int key, DataBaseGIdentifiers db)
     {
         professions.add(db.getProfession(key));
     }
 
-    public void addKeywords(int key, DataBeseGIdentifiers db)
+    public void addKeywords(int key, DataBaseGIdentifiers db)
     {
         keywords.add(db.getKeyword(key));
     }

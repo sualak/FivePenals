@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.util.*;
 
 
-public class DataBeseGIdentifiers
+public class DataBaseGIdentifiers
 {
     private final Map<Integer, Professions> allProfessions = new HashMap<>();
     private final Map<Integer, Keywords> allKeywords = new HashMap<>();
 
     // constructor
-    public DataBeseGIdentifiers() throws IOException
+    public DataBaseGIdentifiers() throws IOException
     {
         initalize();
     }
