@@ -178,4 +178,23 @@ public abstract class Ensure
 //        }
 //
 //    }
+
+
+
+    //---------------------------Social ENSURERS----------------------------------------------------------
+
+    public static void ensureUserNotInContacts(User sender, User receiver, Set<User> contacts){
+        isNotNull(sender,"Sender");
+        isNotNull(receiver,"Receiver");
+        if(isContainedSet(receiver,contacts)){
+            throw new IllegalArgumentException("User has already been added to your contacts");
+        }
+        if(equals(sender,receiver)){
+            throw new IllegalArgumentException("You cant add yourself to your contacts");
+        }
+    }
+    public static User ensureNotNullNotBlank(User contact){
+        isNotNull(contact,"Null");
+        return contact;
+    }
 }

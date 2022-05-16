@@ -2,6 +2,7 @@ package main;
 
 import main.Case.Case;
 import main.dataBase.DataBaseGIdentifiers;
+import main.dataBase.Professions;
 import main.user.ScoreEntry;
 import main.user.User;
 
@@ -37,6 +38,7 @@ public class PlayGround
         u.addProfession(1, db);
         System.out.println(u.getProfession().getName());
         u3.getScore().printAllAScoreEntrys();
+
 
     }
 }
