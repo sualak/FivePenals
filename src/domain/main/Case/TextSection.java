@@ -1,7 +1,6 @@
 package main.Case;
 
-import main.Case.Section;
-
+import validation.Ensure;
 
 //test klasse nicht verwenden
 public class TextSection extends Section
@@ -16,5 +15,11 @@ public class TextSection extends Section
     public String getContent()
     {
         return content;
+    }
+
+    @Override
+    public void editContent(String content)
+    {
+        this.content = Ensure.ensureContentValid(content);
     }
 }

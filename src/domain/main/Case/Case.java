@@ -35,6 +35,12 @@ public class Case extends BaseEntety
         return titel;
     }
 
+    public void setTitel(String titel)
+    {
+        Ensure.ensureTitelValid(titel, "Titel");
+        this.titel = titel;
+    }
+
     public Set<Professions> getProfessions()
     {
         return Collections.unmodifiableSet(professions);
@@ -91,8 +97,27 @@ public class Case extends BaseEntety
         this.voting = new Voting(question, this);
     }
 
-//    public void addSection(Section section)
-//    {
-//        sections.add();
-//    }
+    public void addSection(Section section)
+    {
+        Ensure.ensureSectionValid(this, section, this.owner);
+        sections.add(section);
+    }
+
+    public void removeSection(Section section)
+    {
+        Ensure.ensureSectionValid(this, section, this.owner);
+        sections.remove(section);
+    }
+    public void addKeyword(Keywords keyword)
+    {
+        Ensure.ensureKeywordValid(this, keyword, this.owner);
+        keywords.add(keyword);
+    }
+
+    public void removeKeyword(Keywords keyword)
+    {
+        Ensure.ensureKeywordValid(this, keyword, this.owner);
+        keywords.remove(keyword);
+    }
+
 }

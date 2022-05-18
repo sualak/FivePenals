@@ -1,5 +1,7 @@
 package main.Case;
 
+import validation.Ensure;
+
 import java.time.Instant;
 
 public abstract class Section
@@ -16,4 +18,6 @@ public abstract class Section
     {
         return uDate;
     }
+
+    public abstract void editContent(String content);
 }

@@ -1,5 +1,7 @@
 package main.Case;
 
+import validation.Ensure;
+
 public class MediaSection extends Section
 {
     private String owner;
@@ -26,5 +28,11 @@ public class MediaSection extends Section
     public String getFileName()
     {
         return fileName;
+    }
+
+    @Override
+    public void editContent(String content)
+    {
+
     }
 }

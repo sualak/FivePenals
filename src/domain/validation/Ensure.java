@@ -1,6 +1,9 @@
 package validation;
 
 import main.Case.Case;
+import main.Case.Section;
+import main.Case.TextSection;
+import main.dataBase.Keywords;
 import main.user.User;
 
 import java.util.*;
@@ -89,6 +92,14 @@ public abstract class Ensure
         return wert;
     }
 
+    public static String ensureTitelValid(String wert, String attribut)
+    {
+        isNotNull(wert, attribut);
+        isNotBlank(wert, attribut);
+
+        return wert;
+    }
+
     public static int ensureGiveCAnswerValid(int wert, boolean isOpen, List<String> answers)
     {
         isInRange(wert, zero, answers.size(), "Correct Answer");
@@ -168,19 +179,6 @@ public abstract class Ensure
         return user;
     }
 
-//    public static Section ensureSectionValid(Case c, Section s, User owner)
-//    {
-//        //
-//        isNotNull(s, "Section");
-//        if(!c.isOpen())
-//        {
-//
-//        }
-//
-//    }
-
-
-
     //---------------------------Social ENSURERS----------------------------------------------------------
 
     public static void ensureUserNotInContacts(User sender, User receiver, Set<User> contacts){
@@ -196,5 +194,33 @@ public abstract class Ensure
     public static User ensureNotNullNotBlank(User contact){
         isNotNull(contact,"Null");
         return contact;
+    }
+
+    //---------------------------Section ENSURERS----------------------------------------------------------
+
+    public static Section ensureSectionValid(Case c, Section s, User owner)
+    {
+        isNotNull(s, "Section");
+        return s;
+    }
+
+    //Textsection
+
+    public static String ensureContentValid(String content)
+    {
+        isNotNull(content, "Content");
+        isNotBlank(content, "Content");
+        isAlphabetic(content, "Content");
+        return content;
+    }
+
+    //---------------------------Keyword ENSURERS----------------------------------------------------------
+
+    public static Keywords ensureKeywordValid(Case c, Keywords k, User owner)
+    {
+        isNotNull(k, "Keyword");
+        isNotBlank(k.getName(), "Keyword");
+        isAlphabetic(k.getName(), "Keyword");
+        return k;
     }
 }
