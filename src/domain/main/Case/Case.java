@@ -17,17 +17,22 @@ public class Case extends BaseEntety
     private final Set<Professions> professions = new HashSet<>();
     private final Set<Keywords> keywords = new HashSet<>();
     private Voting voting;
-    private User owner;
-    private List<User> users = new ArrayList<>();
-    private List<Section> sections = new ArrayList<>();
+    private final User owner;
+    private final List<User> users = new ArrayList<>();
+    private final List<Section> sections = new ArrayList<>();
     private boolean isOpen = true;
 
     public Case(String titel, String Question, User owner)
     {
         super(IDType.CASE);
-        this.titel = titel;
+        this.titel = Ensure.ensureTitelValid(titel, "Titel");
         this.voting = new Voting(Question, this);
-        this.owner = owner;
+        this.owner = Ensure.ensureOwnerValid(owner, users, getOwner());
+    }
+
+    public void setOpen(boolean open)
+    {
+        isOpen = open;
     }
 
     public String getTitel()
@@ -78,11 +83,14 @@ public class Case extends BaseEntety
 
     public void addProfession(int key, DataBaseGIdentifiers db)
     {
+        Ensure.ensureCaseNotClosed(this);
         professions.add(db.getProfession(key));
+
     }
 
     public void addKeywords(int key, DataBaseGIdentifiers db)
     {
+        Ensure.ensureCaseNotClosed(this);
         keywords.add(db.getKeyword(key));
     }
 
@@ -93,31 +101,34 @@ public class Case extends BaseEntety
 
     public void resetVoting(String question)
     {
+        Ensure.ensureCaseNotClosed(this);
         Ensure.ensureStringValid(question, "Question");
         this.voting = new Voting(question, this);
     }
 
     public void addSection(Section section)
     {
-        Ensure.ensureSectionValid(this, section, this.owner);
-        sections.add(section);
+        Ensure.ensureCaseNotClosed(this);
+        sections.add(Ensure.ensureSectionValid(this, section, this.owner));
+
     }
 
     public void removeSection(Section section)
     {
-        Ensure.ensureSectionValid(this, section, this.owner);
-        sections.remove(section);
-    }
-    public void addKeyword(Keywords keyword)
-    {
-        Ensure.ensureKeywordValid(this, keyword, this.owner);
-        keywords.add(keyword);
+        Ensure.ensureCaseNotClosed(this);
+        sections.remove(Ensure.ensureSectionValid(this, section, this.owner));
     }
 
-    public void removeKeyword(Keywords keyword)
+    public void removeKeyword(int key, DataBaseGIdentifiers dataBaseGIdentifiers)
     {
-        Ensure.ensureKeywordValid(this, keyword, this.owner);
-        keywords.remove(keyword);
+        Ensure.ensureCaseNotClosed(this);
+        keywords.remove(dataBaseGIdentifiers.getKeyword(key));
+    }
+
+    public void removeProfessions(int key, DataBaseGIdentifiers dataBaseGIdentifiers)
+    {
+        Ensure.ensureCaseNotClosed(this);
+        professions.remove(dataBaseGIdentifiers.getProfession(key));
     }
 
 }
