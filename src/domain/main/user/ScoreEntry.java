@@ -1,5 +1,7 @@
 package main.user;
 
+import validation.Ensure;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -15,13 +17,13 @@ public class ScoreEntry
     //constructor
     public ScoreEntry(String caseTitel, String reason, int addedScore)
     {
-        this.caseTitel = caseTitel;
-        this.reason = reason;
+        this.caseTitel = Ensure.ensureStringValid(caseTitel, "Casetitel");
+        this.reason = Ensure.ensureStringValid(reason, "reason");
         this.addedScore = addedScore;
     }
 
     //getter
-    public String getcDate()
+    public String getcDateAsString()
     {
         String PATTERN_FORMAT = "dd.MM.yyyy";
 
@@ -59,7 +61,7 @@ public class ScoreEntry
     //toString
     public String toString()
     {
-        return String.format("%s %s %d %s", getcDate(), reason, addedScore, caseTitel);
+        return String.format("%s %s %d %s", getcDateAsString(), reason, addedScore, caseTitel);
     }
 
     //forTestingOnly cDate final must be deleated

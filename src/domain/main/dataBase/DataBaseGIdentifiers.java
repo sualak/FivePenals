@@ -3,6 +3,8 @@ package main.dataBase;
 
 
 
+import validation.Ensure;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -34,12 +36,12 @@ public class DataBaseGIdentifiers
 
     public Professions getProfession(int key)
     {
-        return allProfessions.get(key);
+        return allProfessions.get(Ensure.ensureKeyIsValid(key, allProfessions));
     }
 
     public Keywords getKeyword(int key)
     {
-        return allKeywords.get(key);
+        return allKeywords.get(Ensure.ensureKeyIsValid(key, allKeywords));
     }
 
     //to String
@@ -101,7 +103,7 @@ public class DataBaseGIdentifiers
 
         for (int i = 0; i < records.size(); i++)
         {
-            allKeywords.put( i , new Keywords(records.get(i).get(0), Keywords.KeywordType.valueOf(records.get(i).get(1))));
+            allKeywords.put(i , new Keywords(records.get(i).get(0), Keywords.KeywordType.valueOf(records.get(i).get(1))));
         }
     }
 }

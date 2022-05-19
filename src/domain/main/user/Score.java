@@ -82,7 +82,7 @@ public class Score
                 sum = zero;
         }
 
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 
     // print from to
@@ -95,7 +95,7 @@ public class Score
         {
             long nowSecond = s.getcDateAsInstant().getEpochSecond();
             if(nowSecond >= fromSecond && nowSecond <= toSecond)
-                sb.append(s.toString()).append("\n");
+                sb.append(s).append("\n");
 
             if(nowSecond > toSecond)
                 break;
@@ -109,7 +109,7 @@ public class Score
         StringBuilder sb = new StringBuilder();
         for (ScoreEntry s: aScoreHistory)
         {
-            sb.append(s.toString()).append("\n");
+            sb.append(s).append("\n");
         }
         System.out.println(sb);
     }
@@ -119,7 +119,7 @@ public class Score
         StringBuilder sb = new StringBuilder();
         for (ScoreEntry s: eScoreHistory)
         {
-            sb.append(s.toString()).append("\n");
+            sb.append(s).append("\n");
         }
         System.out.println(sb);
     }
@@ -138,17 +138,17 @@ public class Score
             if(sumOfDay == zero)
             {
                 sumOfDay += now.getAddedScore();
-                currentDate = now.getcDate();
+                currentDate = now.getcDateAsString();
             }
 
-            if(now.getcDate().equals(nextDay.getcDate()))
+            if(now.getcDateAsString().equals(nextDay.getcDateAsString()))
             {
                 sumOfDay += nextDay.getAddedScore();
             }
             else
             {
                 sb.append(currentDate).append(sumOfDay);
-                nextDay.getcDate();
+                nextDay.getcDateAsString();
                 sumOfDay = zero;
             }
         }
@@ -169,17 +169,17 @@ public class Score
             if(sumOfDay == zero)
             {
                 sumOfDay += now.getAddedScore();
-                currentDate = now.getcDate();
+                currentDate = now.getcDateAsString();
             }
 
-            if(now.getcDate().equals(nextDay.getcDate()))
+            if(now.getcDateAsString().equals(nextDay.getcDateAsString()))
             {
                 sumOfDay += nextDay.getAddedScore();
             }
             else
             {
                 sb.append(currentDate).append(sumOfDay);
-                nextDay.getcDate();
+                nextDay.getcDateAsString();
                 sumOfDay = zero;
             }
         }
@@ -202,17 +202,17 @@ public class Score
             if(sumOfDay == zero)
             {
                 sumOfDay += now.getAddedScore();
-                currentDate = now.getcDate().substring(mounthOffset);
+                currentDate = now.getcDateAsString().substring(mounthOffset);
             }
 
-            if(now.getcDate().substring(mounthOffset).equals(nextDay.getcDate().substring(mounthOffset)))
+            if(now.getcDateAsString().substring(mounthOffset).equals(nextDay.getcDateAsString().substring(mounthOffset)))
             {
                 sumOfDay += nextDay.getAddedScore();
             }
             else
             {
                 sb.append(currentDate).append(sumOfDay);
-                nextDay.getcDate();
+                nextDay.getcDateAsString();
                 sumOfDay = zero;
             }
         }
@@ -233,17 +233,17 @@ public class Score
             if(sumOfDay == zero)
             {
                 sumOfDay += now.getAddedScore();
-                currentDate = now.getcDate().substring(mounthOffset);
+                currentDate = now.getcDateAsString().substring(mounthOffset);
             }
 
-            if(now.getcDate().substring(mounthOffset).equals(nextDay.getcDate().substring(mounthOffset)))
+            if(now.getcDateAsString().substring(mounthOffset).equals(nextDay.getcDateAsString().substring(mounthOffset)))
             {
                 sumOfDay += nextDay.getAddedScore();
             }
             else
             {
                 sb.append(currentDate).append(sumOfDay);
-                nextDay.getcDate();
+                nextDay.getcDateAsString();
                 sumOfDay = zero;
             }
         }
@@ -265,17 +265,17 @@ public class Score
             if(sumOfDay == zero)
             {
                 sumOfDay += now.getAddedScore();
-                currentDate = now.getcDate().substring(yearOffset);
+                currentDate = now.getcDateAsString().substring(yearOffset);
             }
 
-            if(now.getcDate().substring(yearOffset).equals(nextDay.getcDate().substring(yearOffset)))
+            if(now.getcDateAsString().substring(yearOffset).equals(nextDay.getcDateAsString().substring(yearOffset)))
             {
                 sumOfDay += nextDay.getAddedScore();
             }
             else
             {
                 sb.append(currentDate).append(sumOfDay);
-                nextDay.getcDate();
+                nextDay.getcDateAsString();
                 sumOfDay = zero;
             }
         }
@@ -296,17 +296,17 @@ public class Score
             if(sumOfDay == zero)
             {
                 sumOfDay += now.getAddedScore();
-                currentDate = now.getcDate().substring(yearOffset);
+                currentDate = now.getcDateAsString().substring(yearOffset);
             }
 
-            if(now.getcDate().substring(yearOffset).equals(nextDay.getcDate().substring(yearOffset)))
+            if(now.getcDateAsString().substring(yearOffset).equals(nextDay.getcDateAsString().substring(yearOffset)))
             {
                 sumOfDay += nextDay.getAddedScore();
             }
             else
             {
                 sb.append(currentDate).append(sumOfDay);
-                nextDay.getcDate();
+                nextDay.getcDateAsString();
                 sumOfDay = zero;
             }
         }

@@ -16,4 +16,6 @@ public abstract class Section
     {
         return uDate;
     }
+
+    public abstract void editContent(String content);
 }

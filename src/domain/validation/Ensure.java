@@ -1,6 +1,9 @@
 package validation;
 
 import main.Case.Case;
+import main.Case.Section;
+import main.Case.TextSection;
+import main.dataBase.Keywords;
 import main.user.Email;
 import main.user.User;
 
@@ -90,6 +93,14 @@ public abstract class Ensure
         return wert;
     }
 
+    public static String ensureTitelValid(String wert, String attribut)
+    {
+        isNotNull(wert, attribut);
+        isNotBlank(wert, attribut);
+
+        return wert;
+    }
+
     public static int ensureGiveCAnswerValid(int wert, boolean isOpen, List<String> answers)
     {
         isInRange(wert, zero, answers.size(), "Correct Answer");
@@ -132,10 +143,10 @@ public abstract class Ensure
         return wert;
     }
 
-    public static void ensurePrintResultValid(User user, String attribut, Map<User, Integer> map)
+    public static void ensurePrintResultValid(User user, String attribut, Map<User, Integer> map, User owner)
     {
         isNotNull(user, attribut);
-        if(!map.containsKey(user))
+        if(!map.containsKey(user) || user.equals(owner))
             throw new IllegalArgumentException("Man muss gevoted haben um das resultat zu sehen");
     }
 
@@ -169,18 +180,15 @@ public abstract class Ensure
         return user;
     }
 
-//    public static Section ensureSectionValid(Case c, Section s, User owner)
-//    {
-//        //
-//        isNotNull(s, "Section");
-//        if(!c.isOpen())
-//        {
-//
-//        }
-//
-//    }
-
-
+    public static User ensureOwnerValid(User user, List<User> users, User owner)
+    {
+        isNotNull(user,"User");
+        if(isContainedList(user, users))
+        {
+            throw new IllegalArgumentException("Owner can not be a User of the Case");
+        }
+        return user;
+    }
 
     //---------------------------Social ENSURERS----------------------------------------------------------
 
@@ -194,9 +202,60 @@ public abstract class Ensure
             throw new IllegalArgumentException("You cant add yourself to your contacts");
         }
     }
-    public static User ensureNotNullNotBlank(User contact){
+    public static void ensureNotNullNotBlank(User contact){
         isNotNull(contact,"Null");
-        return contact;
+    }
+
+    //---------------------------Section ENSURERS----------------------------------------------------------
+
+    public static Section ensureSectionValid(Case c, Section s, User owner)
+    {
+        isNotNull(s, "Section");
+        if(!c.isOpen())
+        {
+            throw  new IllegalStateException("Case is already closed");
+        }
+        return s;
+    }
+
+    //Textsection
+
+    public static String ensureContentValid(String content)
+    {
+        isNotNull(content, "Content");
+        isNotBlank(content, "Content");
+        isAlphabetic(content, "Content");
+        return content;
+    }
+
+    //---------------------------Keyword ENSURERS----------------------------------------------------------
+
+    public static Keywords ensureKeywordValid(Case c, Keywords k, User owner)
+    {
+        isNotNull(k, "Keyword");
+        isNotBlank(k.getName(), "Keyword");
+        isAlphabetic(k.getName(), "Keyword");
+        return k;
+    }
+
+    //---------------------------DATABASE ENSURERS----------------------------------------------------------
+    public static <T> Integer ensureKeyIsValid(Integer key , Map<Integer, T> map)
+    {
+        if (map.containsKey(key))
+        {
+            throw new IllegalArgumentException("Key is not valid");
+        }
+
+        return key;
+    }
+
+    //---------------------------DataBaseGIdentifiers ENSURERS----------------------------------------------------------
+    public static void ensureCaseNotClosed(Case c)
+    {
+        if(!c.isOpen())
+        {
+            throw new IllegalStateException("Case is already closed");
+        }
     }
 
 //------------------------------User ENSURERS------------------------------------------------
@@ -215,4 +274,3 @@ public abstract class Ensure
         return password;
     }
 }
-
