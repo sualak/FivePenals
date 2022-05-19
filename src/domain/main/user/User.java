@@ -1,8 +1,9 @@
 package main.user;
 
-import main.*;
+import main.BaseEntety;
 import main.Case.Case;
 import main.dataBase.*;
+import static validation.Ensure.*;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -22,18 +23,25 @@ public class User extends BaseEntety
     private Language language;
     private Set<Case> cases = new HashSet<>();
 
-    public User(Email eMail, Password password, Personal pData)
+    public User(Email eMail)
     {
         super(IDType.USER);
         this.eMail = eMail;
         this.password = password;
-        this.pData = pData;
-    }
 
-    public User()
-    {
-        super(IDType.valueOf("USER"));
     }
+//    public User(Email eMail, Password password, Personal pData)
+//    {
+//        super(IDType.USER);
+//        this.eMail = ensureValidMail(eMail);
+//        this.password = password;
+//        this.pData = pData;
+//    }
+
+//    public User()
+//    {
+//        super(IDType.valueOf("USER"));
+//    }
 
     public Email geteMail()
     {
@@ -87,11 +95,14 @@ public class User extends BaseEntety
 
     public void addProfession(int key, DataBaseGIdentifiers db)
     {
+        //kein valid nötig
         this.profession = db.getProfession(1);
     }
 
     public void addKeyword(int key, DataBaseGIdentifiers db)
     {
+        //kein valid nötig
         keywords.add(db.getKeyword(1));
     }
+
 }

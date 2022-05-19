@@ -1,4 +1,5 @@
 package main.user;
+import static validation.Ensure.*;
 
 public class Email
 {
@@ -6,7 +7,7 @@ public class Email
 
     public Email(String eMail)
     {
-        this.eMail = eMail;
+        this.eMail = ensureValidMail(eMail);
     }
 
     public String geteMail()
