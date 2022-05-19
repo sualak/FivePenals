@@ -1,6 +1,8 @@
 package main.dataBase;
 
 
+import validation.Ensure;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -30,12 +32,12 @@ public class DataBasePIdentifiers
 
     public Location getLocation(int key)
     {
-        return allLocations.get(key);
+        return allLocations.get(Ensure.ensureKeyIsValid(key, allLocations));
     }
 
     public Language getLanguage(int key)
     {
-        return allLanguages.get(key);
+        return allLanguages.get(Ensure.ensureKeyIsValid(key, allLanguages));
     }
 
     //to String
