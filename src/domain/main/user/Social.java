@@ -38,25 +38,32 @@ public class Social
 
     }
     public User showRequests(){
-        for (User sender: incomingRequests) {
-            return sender;
+        for (User request: incomingRequests) {
+            return request;
         }
         return null;
     }
     // no need to clear from sets, to prevent request-spams.
-    public void handleRequest(User sender, boolean confirm){
+    /*public void handleRequest(User sender, boolean confirm){
         if (sender.equals(showRequests()))
             handleRequest(sender, confirm);
         else throw new IllegalArgumentException("this user didnt send a request");
-    }
+    }*/
+
     private void crossAdd(User receiver){
         if(incomingRequests.contains(receiver))
             contacts.add(receiver);
     }
+
     public void removeContact(User contact){
         Ensure.ensureNotNullNotBlank(contact);
 
         contacts.remove(contact);
     }
+
+    public void printContacts(){
+        System.out.println(contacts);
+    }
+
 }
 

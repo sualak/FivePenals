@@ -196,6 +196,7 @@ public abstract class Ensure
         return contact;
     }
 
+
     //---------------------------Section ENSURERS----------------------------------------------------------
 
     public static Section ensureSectionValid(Case c, Section s, User owner)
