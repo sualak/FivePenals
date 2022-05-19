@@ -17,17 +17,22 @@ public class Case extends BaseEntety
     private final Set<Professions> professions = new HashSet<>();
     private final Set<Keywords> keywords = new HashSet<>();
     private Voting voting;
-    private User owner;
-    private List<User> users = new ArrayList<>();
-    private List<Section> sections = new ArrayList<>();
+    private final User owner;
+    private final List<User> users = new ArrayList<>();
+    private final List<Section> sections = new ArrayList<>();
     private boolean isOpen = true;
 
     public Case(String titel, String Question, User owner)
     {
         super(IDType.CASE);
-        this.titel = titel;
+        this.titel = Ensure.ensureTitelValid(titel, "Titel");
         this.voting = new Voting(Question, this);
-        this.owner = owner;
+        this.owner = Ensure.ensureUserValid(owner, users, getOwner());
+    }
+
+    public void setOpen(boolean open)
+    {
+        isOpen = open;
     }
 
     public String getTitel()
@@ -110,14 +115,22 @@ public class Case extends BaseEntety
     }
     public void addKeyword(Keywords keyword)
     {
-        Ensure.ensureKeywordValid(this, keyword, this.owner);
         keywords.add(keyword);
     }
 
     public void removeKeyword(Keywords keyword)
     {
-        Ensure.ensureKeywordValid(this, keyword, this.owner);
         keywords.remove(keyword);
+    }
+
+    public void addProfessions(Professions profession)
+    {
+        professions.add(profession);
+    }
+
+    public void removeProfessions(Professions profession)
+    {
+        professions.remove(profession);
     }
 
 }
