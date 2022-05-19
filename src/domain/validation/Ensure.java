@@ -142,10 +142,10 @@ public abstract class Ensure
         return wert;
     }
 
-    public static void ensurePrintResultValid(User user, String attribut, Map<User, Integer> map)
+    public static void ensurePrintResultValid(User user, String attribut, Map<User, Integer> map, User owner)
     {
         isNotNull(user, attribut);
-        if(!map.containsKey(user))
+        if(!map.containsKey(user) || user.equals(owner))
             throw new IllegalArgumentException("Man muss gevoted haben um das resultat zu sehen");
     }
 
