@@ -28,4 +28,8 @@ public class MediaSection extends Section
     {
 
     }
+
+    public enum FileIdentifierType{
+        JPG, JPEG, AVIF, GIF
+    }
 }
