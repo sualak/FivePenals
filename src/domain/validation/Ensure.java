@@ -205,6 +205,7 @@ public abstract class Ensure
         isNotNull(contact,"Null");
     }
 
+
     //---------------------------Section ENSURERS----------------------------------------------------------
 
     public static Section ensureSectionValid(Case c, Section s, User owner)
