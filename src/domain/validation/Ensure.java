@@ -223,4 +223,15 @@ public abstract class Ensure
         isAlphabetic(k.getName(), "Keyword");
         return k;
     }
+
+    //---------------------------DATABASE ENSURERS----------------------------------------------------------
+    public static <T> Integer ensureKeyIsValid(Integer key , Map<Integer, T> map)
+    {
+        if (map.containsKey(key))
+        {
+            throw new IllegalArgumentException("Key is not valid");
+        }
+
+        return key;
+    }
 }
