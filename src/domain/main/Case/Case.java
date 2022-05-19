@@ -104,33 +104,22 @@ public class Case extends BaseEntety
 
     public void addSection(Section section)
     {
-        Ensure.ensureSectionValid(this, section, this.owner);
-        sections.add(section);
+        sections.add(Ensure.ensureSectionValid(this, section, this.owner));
     }
 
     public void removeSection(Section section)
     {
-        Ensure.ensureSectionValid(this, section, this.owner);
-        sections.remove(section);
-    }
-    public void addKeyword(Keywords keyword)
-    {
-        keywords.add(keyword);
+        sections.remove(Ensure.ensureSectionValid(this, section, this.owner));
     }
 
-    public void removeKeyword(Keywords keyword)
+    public void removeKeyword(int key, DataBaseGIdentifiers dataBaseGIdentifiers)
     {
-        keywords.remove(keyword);
+        keywords.remove(dataBaseGIdentifiers.getKeyword(key));
     }
 
-    public void addProfessions(Professions profession)
+    public void removeProfessions(int key, DataBaseGIdentifiers dataBaseGIdentifiers)
     {
-        professions.add(profession);
-    }
-
-    public void removeProfessions(Professions profession)
-    {
-        professions.remove(profession);
+        professions.remove(dataBaseGIdentifiers.getProfession(key));
     }
 
 }
