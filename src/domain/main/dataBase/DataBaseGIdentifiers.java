@@ -5,21 +5,21 @@ package main.dataBase;
 
 import validation.Ensure;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
+import static java.lang.String.format;
 
-public class DataBaseGIdentifiers
+
+public class DataBaseGIdentifiers implements Serializable
 {
-    private final Map<Integer, Professions> allProfessions = new HashMap<>();
-    private final Map<Integer, Keywords> allKeywords = new HashMap<>();
+    private Map<Integer, Professions> allProfessions = new HashMap<>();
+    private Map<Integer, Keywords> allKeywords = new HashMap<>();
 
     // constructor
-    public DataBaseGIdentifiers() throws IOException
+    public DataBaseGIdentifiers()
     {
-        initalize();
+
     }
 
 
@@ -104,6 +104,119 @@ public class DataBaseGIdentifiers
         for (int i = 0; i < records.size(); i++)
         {
             allKeywords.put(i , new Keywords(records.get(i).get(0), Keywords.KeywordType.valueOf(records.get(i).get(1))));
+        }
+    }
+
+    public void serializeProfessions(String filename) throws IOException
+    {
+        Objects.requireNonNull(filename, "filname");
+
+        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename)))
+        {
+            out.writeObject(allProfessions);
+            System.out.println("Succes");
+        } catch (FileNotFoundException e)
+        {
+            throw new FileNotFoundException(format("Beim öffnen von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+
+        } catch (IOException e)
+        {
+            throw new IOException(format("Beim Serialisieren in %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        }
+    }
+
+    public void unSerializeProffesions(String filename) throws IOException, ClassNotFoundException
+    {
+        Objects.requireNonNull(filename, "filname");
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename)))
+        {   Object o = in.readObject();
+            allProfessions = (Map<Integer, Professions>) o;
+            System.out.println("Deserialized Data: \n" + in.readObject().toString());
+            System.out.println("Succes");
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException(format("Beim öffnen von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        } catch (IOException e)
+        {
+            throw new IOException(format("Beim Deserialisieren von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        } catch (ClassNotFoundException e)
+        {
+            throw new ClassNotFoundException(format("Bei der suche der Classe von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        }
+    }
+
+    public void serializeKeywords(String filename) throws IOException
+    {
+        Objects.requireNonNull(filename, "filname");
+
+        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename)))
+        {
+            out.writeObject(allKeywords);
+            System.out.println("Succes");
+        } catch (FileNotFoundException e)
+        {
+            throw new FileNotFoundException(format("Beim öffnen von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+
+        } catch (IOException e)
+        {
+            throw new IOException(format("Beim Serialisieren in %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        }
+    }
+
+    public void unSerializeKeywords(String filename) throws IOException, ClassNotFoundException
+    {
+        Objects.requireNonNull(filename, "filname");
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename)))
+        {   Object o = in.readObject();
+            allKeywords = (Map<Integer, Keywords>) o;
+            System.out.println("Deserialized Data: \n" + in.readObject().toString());
+            System.out.println("Succes");
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException(format("Beim öffnen von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        } catch (IOException e)
+        {
+            throw new IOException(format("Beim Deserialisieren von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        } catch (ClassNotFoundException e)
+        {
+            throw new ClassNotFoundException(format("Bei der suche der Classe von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        }
+    }
+
+    public void serialize(String filename) throws IOException
+    {
+        Objects.requireNonNull(filename, "filname");
+
+        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename)))
+        {
+            out.writeObject(this);
+            System.out.println("Succes");
+        } catch (FileNotFoundException e)
+        {
+            throw new FileNotFoundException(format("Beim öffnen von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+
+        } catch (IOException e)
+        {
+            throw new IOException(format("Beim Serialisieren in %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        }
+    }
+
+    public void unSerialize(String filename) throws IOException, ClassNotFoundException
+    {
+        Objects.requireNonNull(filename, "filname");
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename)))
+        {   Object o = (DataBaseGIdentifiers)in.readObject();
+            System.out.println("Deserialized Data: \n" + in.readObject().toString());
+            System.out.println("Succes");
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException(format("Beim öffnen von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        } catch (IOException e)
+        {
+            throw new IOException(format("Beim Deserialisieren von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        } catch (ClassNotFoundException e)
+        {
+            throw new ClassNotFoundException(format("Bei der suche der Classe von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
         }
     }
 }

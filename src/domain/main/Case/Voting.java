@@ -81,9 +81,15 @@ public class Voting
     {
         this.cAnswer = ensureGiveCAnswerValid(cAnswer, isOpen, answers);
         String titel = aCase.getTitel();
-        List<User> entriesRight = voted.entrySet().stream().filter((entry) -> entry.getValue().equals(cAnswer)).map(Map.Entry::getKey).toList();
+        List<User> entriesRight = voted.entrySet()
+                                    .stream()
+                                    .filter((entry) -> entry.getValue().equals(cAnswer)).map(Map.Entry::getKey)
+                                    .toList();
         entriesRight.forEach((User u) -> u.getScore().seteScoer(titel, "right answer", scoreAddforRightAnswer));
-        List<User> entriesWrong = voted.entrySet().stream().filter((entry) -> !entry.getValue().equals(cAnswer)).map(Map.Entry::getKey).toList();
+        List<User> entriesWrong = voted.entrySet()
+                                    .stream()
+                                    .filter((entry) -> !entry.getValue().equals(cAnswer)).map(Map.Entry::getKey)
+                                    .toList();
         entriesWrong.forEach((User u) -> u.getScore().seteScoer(titel, "wrong answer", scoreAddforWrongAnswer));
         isOpen = false;
         aCase.setOpen(false);

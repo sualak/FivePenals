@@ -3,15 +3,15 @@ package main.dataBase;
 
 import validation.Ensure;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
+
+import static java.lang.String.format;
 
 public class DataBasePIdentifiers
 {
-    private final Map<Integer, Location> allLocations = new HashMap<>();
-    private final Map<Integer, Language> allLanguages = new HashMap<>();
+    private Map<Integer, Location> allLocations = new HashMap<>();
+    private Map<Integer, Language> allLanguages = new HashMap<>();
 
     // constructor
     public DataBasePIdentifiers() throws IOException
@@ -100,6 +100,119 @@ public class DataBasePIdentifiers
         for (int i = 0; i < records.size(); i++)
         {
             allLanguages.put( i , new Language(records.get(i).get(0), Language.LanguagType.valueOf(records.get(i).get(1))));
+        }
+    }
+
+    public void serializeLanguages(String filename) throws IOException
+    {
+        Objects.requireNonNull(filename, "filname");
+
+        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename)))
+        {
+            out.writeObject(allLanguages);
+            System.out.println("Succes");
+        } catch (FileNotFoundException e)
+        {
+            throw new FileNotFoundException(format("Beim öffnen von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+
+        } catch (IOException e)
+        {
+            throw new IOException(format("Beim Serialisieren in %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        }
+    }
+
+    public void unSerializeLanguages(String filename) throws IOException, ClassNotFoundException
+    {
+        Objects.requireNonNull(filename, "filname");
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename)))
+        {   Object o = in.readObject();
+            allLanguages = (Map<Integer, Language>) o;
+            System.out.println("Deserialized Data: \n" + in.readObject().toString());
+            System.out.println("Succes");
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException(format("Beim öffnen von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        } catch (IOException e)
+        {
+            throw new IOException(format("Beim Deserialisieren von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        } catch (ClassNotFoundException e)
+        {
+            throw new ClassNotFoundException(format("Bei der suche der Classe von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        }
+    }
+
+    public void serializeLocations(String filename) throws IOException
+    {
+        Objects.requireNonNull(filename, "filname");
+
+        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename)))
+        {
+            out.writeObject(allLocations);
+            System.out.println("Succes");
+        } catch (FileNotFoundException e)
+        {
+            throw new FileNotFoundException(format("Beim öffnen von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+
+        } catch (IOException e)
+        {
+            throw new IOException(format("Beim Serialisieren in %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        }
+    }
+
+    public void unSerializeLocations(String filename) throws IOException, ClassNotFoundException
+    {
+        Objects.requireNonNull(filename, "filname");
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename)))
+        {   Object o = in.readObject();
+            allLocations = (Map<Integer, Location>) o;
+            System.out.println("Deserialized Data: \n" + in.readObject().toString());
+            System.out.println("Succes");
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException(format("Beim öffnen von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        } catch (IOException e)
+        {
+            throw new IOException(format("Beim Deserialisieren von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        } catch (ClassNotFoundException e)
+        {
+            throw new ClassNotFoundException(format("Bei der suche der Classe von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        }
+    }
+
+    public void serialize(String filename) throws IOException
+    {
+        Objects.requireNonNull(filename, "filname");
+
+        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename)))
+        {
+            out.writeObject(this);
+            System.out.println("Succes");
+        } catch (FileNotFoundException e)
+        {
+            throw new FileNotFoundException(format("Beim öffnen von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+
+        } catch (IOException e)
+        {
+            throw new IOException(format("Beim Serialisieren in %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        }
+    }
+
+    public void unSerialize(String filename) throws IOException, ClassNotFoundException
+    {
+        Objects.requireNonNull(filename, "filname");
+
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename)))
+        {   Object o = in.readObject();
+            System.out.println("Deserialized Data: \n" + in.readObject().toString());
+            System.out.println("Succes");
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException(format("Beim öffnen von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        } catch (IOException e)
+        {
+            throw new IOException(format("Beim Deserialisieren von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
+        } catch (ClassNotFoundException e)
+        {
+            throw new ClassNotFoundException(format("Bei der suche der Classe von %s ist leider der Fehler %s aufgetreten", filename, e.getMessage()));
         }
     }
 }
