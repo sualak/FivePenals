@@ -67,26 +67,23 @@ public class Score
         LocalDate start = LocalDate.ofInstant(cDate, ZoneId.systemDefault());
         LocalDate end = LocalDate.ofInstant(endDate, ZoneId.systemDefault());
         List<LocalDate> dateList = new ArrayList<>();
-        start.datesUntil(end ,period).forEach((dateList::add));
-        int lastListEntry = (dateList.size() - 1);
-        if(!end.equals(dateList.get(lastListEntry)))
-        {
-            dateList.add(end);
-        }
 
-        System.out.println(start+"start");
-        System.out.println(end+"end");
-        System.out.println(dateList.get(lastListEntry)+"last");
+        start.datesUntil(end ,period).forEach((dateList::add));
+
+        dateList.add(end);
+
+        int lastListEntry = (dateList.size() - 1);
 
         int sum = zero;
 
-        for (int i = zero; i <= lastListEntry; i++)
+        for (int i = zero; i < lastListEntry; i++)
         {
             LocalDate from = dateList.get(i);
             LocalDate to = dateList.get(i+1);
             for (ScoreEntry s: aScoreHistory)
             {
-                if((from.compareTo(s.getcDateAsLocalDate()) <= zero) && (to.compareTo(s.getcDateAsLocalDate()) > zero))
+                if((from.compareTo(s.getcDateAsLocalDate()) <= zero && to.compareTo(s.getcDateAsLocalDate()) > zero)
+                        || (to.isEqual(dateList.get(lastListEntry)) && from.compareTo(s.getcDateAsLocalDate()) <= zero && to.compareTo(s.getcDateAsLocalDate()) >= zero))
                     sum+=s.getAddedScore();
             }
             sb.append(from.toString()).append(" - ").append(to.toString()).append(" | Added Score : ").append(sum).append("\n");
