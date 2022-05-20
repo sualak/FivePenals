@@ -37,6 +37,11 @@ public class PlayGround
         u.addProfession(1, db);
         System.out.println(u.getProfession().getName());
         u3.getScore().printAllAScoreEntrys();
+        c.getVoting().giveCAnswer(1);
+        System.out.println(u2.getScore().geteScoreHistory());
+        System.out.println(u3.getScore().geteScoreHistory());
+        System.out.println(c.isOpen());
+        System.out.println(c.getVoting().isOpen());
 
 
 //        for testing purposes only
