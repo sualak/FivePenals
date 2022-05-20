@@ -87,11 +87,11 @@ public class User extends BaseEntety
 
     public void addProfession(int key, DataBaseGIdentifiers db)
     {
-        this.profession = db.getProfession(1);
+        this.profession = db.getProfession(key);
     }
 
     public void addKeyword(int key, DataBaseGIdentifiers db)
     {
-        keywords.add(db.getKeyword(1));
+        keywords.add(db.getKeyword(key));
     }
 }

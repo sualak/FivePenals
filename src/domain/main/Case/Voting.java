@@ -65,12 +65,13 @@ public class Voting
     }
 
 
-    //setter
+    //old only needed if case closes/opens voting
     /*public void isOpen(Case aCase, boolean isOpen)
     {
         this.isOpen = isOpenValid(isOpen, aCase, this.aCase);
     }*/
 
+    //setter
     public void setAnswers(String answer)
     {
         answers.add(ensureAnswerValid(answer, "Answer", Collections.unmodifiableList(answers), isOpen));
@@ -83,12 +84,14 @@ public class Voting
         String titel = aCase.getTitel();
         List<User> entriesRight = voted.entrySet()
                                     .stream()
-                                    .filter((entry) -> entry.getValue().equals(cAnswer)).map(Map.Entry::getKey)
+                                    .filter((entry) -> entry.getValue().equals(cAnswer))
+                                    .map(Map.Entry::getKey)
                                     .toList();
         entriesRight.forEach((User u) -> u.getScore().seteScoer(titel, "right answer", scoreAddforRightAnswer));
         List<User> entriesWrong = voted.entrySet()
                                     .stream()
-                                    .filter((entry) -> !entry.getValue().equals(cAnswer)).map(Map.Entry::getKey)
+                                    .filter((entry) -> !entry.getValue().equals(cAnswer))
+                                    .map(Map.Entry::getKey)
                                     .toList();
         entriesWrong.forEach((User u) -> u.getScore().seteScoer(titel, "wrong answer", scoreAddforWrongAnswer));
         isOpen = false;

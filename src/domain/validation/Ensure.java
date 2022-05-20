@@ -241,7 +241,7 @@ public abstract class Ensure
     //---------------------------DATABASE ENSURERS----------------------------------------------------------
     public static <T> Integer ensureKeyIsValid(Integer key , Map<Integer, T> map)
     {
-        if (map.containsKey(key))
+        if (!map.containsKey(key))
         {
             throw new IllegalArgumentException("Key is not valid");
         }

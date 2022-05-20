@@ -7,6 +7,8 @@ import main.user.ScoreEntry;
 import main.user.User;
 
 import java.io.IOException;
+import java.time.Instant;
+import java.time.Period;
 
 public class PlayGround
 {
@@ -21,15 +23,12 @@ public class PlayGround
         c.getVoting().setAnswers("test");
         c.getVoting().setAnswers("testA");
 
-        ScoreEntry s1  = new ScoreEntry("test", "test", 10);
-        ScoreEntry s2 = new ScoreEntry("test", "test", 10);
-
         u2.addProfession(1,db);
         u3.addProfession(1,db);
         u2.addKeyword(0,db);
 
         c.addProfession(1,db);
-        c.addKeywords(1,db);
+        c.addKeywords(0,db);
         c.addUser(u2);
         c.addUser(u3);
         c.getVoting().addVote(0,u2);
@@ -40,5 +39,20 @@ public class PlayGround
         u3.getScore().printAllAScoreEntrys();
 
 
+//        for testing purposes only
+//        for (int i = 0; i < 50; i++)
+//        {
+//            u.getScore().setaScore("test","test",10);
+//        }
+//        int i = 50000;
+//        int start = 0;
+//        for (ScoreEntry s: u.getScore().getaScoreHistory())
+//        {
+//            s.setcDate(Instant.ofEpochSecond(start+i));
+//            i+=50000;
+//        }
+//        u.getScore().printAllAScoreEntrys();
+//        System.out.println(u.getScore().getaScore());
+//        u.getScore().printFromToPeriod(Instant.ofEpochSecond(start), Instant.ofEpochSecond(start+i), Period.ofDays(3),true);
     }
 }
