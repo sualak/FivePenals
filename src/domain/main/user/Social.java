@@ -12,6 +12,14 @@ public class Social
     private final Set<User> contacts = new HashSet<>();
     private final Set<User> incomingRequests = new HashSet<>();
     private final Set<User> outGoingRequest = new HashSet<>();
+    //added owner (is sender)
+    private final User owner;
+
+    public Social(User owner)
+    {
+        //ensurer muss geschrieben werden
+        this.owner = owner;
+    }
 
 
     public Set<User> getContacts()

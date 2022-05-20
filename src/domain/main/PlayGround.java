@@ -15,7 +15,7 @@ public class PlayGround
         User u = new User();
         User u2 = new User();
         User u3 = new User();
-        DataBaseGIdentifiers db = new DataBaseGIdentifiers();
+        DataBaseGIdentifiers db = new DataBaseGIdentifiers("C:\\Users\\suala\\Downloads\\Professions.csv","C:\\Users\\suala\\Downloads\\Keywords.csv");
 
         Case c = new Case("testT", "testQ", u);
         c.getVoting().setAnswers("test");

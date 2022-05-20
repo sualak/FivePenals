@@ -12,15 +12,15 @@ public class User extends BaseEntety
 {
     private Email eMail;
     private Password password;
-    private Social sData = new Social();
+    private final Social sData = new Social(this);
     private Personal pData;
-    private Score score = new Score();
+    private final Score score = new Score();
     //private final GIdentifiers gIdentifiers = new GIdentifiers();
     private Professions profession;
     private final Set<Keywords> keywords = new HashSet<>();
     private Location location;
     private Language language;
-    private Set<Case> cases = new HashSet<>();
+    private final Set<Case> cases = new HashSet<>();
 
     public User(Email eMail, Password password, Personal pData)
     {
