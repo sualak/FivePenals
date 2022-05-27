@@ -191,20 +191,29 @@ public abstract class Ensure
 
     //---------------------------Social ENSURERS----------------------------------------------------------
 
-    public static void ensureUserNotInContacts(User sender, User receiver, Set<User> contacts){
-        isNotNull(sender,"Sender");
-        isNotNull(receiver,"Receiver");
-        if(isContainedSet(receiver,contacts)){
+    public static void ensureUserNotInContacts(User user,User owner, Set<User> contacts){
+        isNotNull(user,"User");
+
+        if(isContainedSet(user,contacts)){
             throw new IllegalArgumentException("User has already been added to your contacts");
         }
-        if(equals(sender,receiver)){
+        if(equals(user,owner)){
             throw new IllegalArgumentException("You cant add yourself to your contacts");
         }
     }
     public static void ensureNotNullNotBlank(User contact){
         isNotNull(contact,"Null");
     }
-
+    public static void ensureContactIsRequesting(User user, Set<User> request){
+        if(!request.contains(user))
+            throw new IllegalArgumentException("This user didnt send a request");
+    }
+    //todo Ensurer for ownerNotNull
+//    public static void ensureOwnerNotNull()
+//    {
+//        isNotNull(owner,"User");
+//
+//    }
 
     //---------------------------Section ENSURERS----------------------------------------------------------
 
