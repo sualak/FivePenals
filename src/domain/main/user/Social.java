@@ -57,7 +57,7 @@ public class Social
         return null;
     }
     // no need to clear from sets, to prevent request-spams.
-    public void handleRequest(User friendRequest, boolean confirm){
+    public boolean handleRequest(User friendRequest, boolean confirm){
         Ensure.ensureContactIsRequesting(friendRequest,incomingRequests);
         //todo request not handled jet
         if(confirm) {
@@ -69,6 +69,21 @@ public class Social
         else{
             incomingRequests.remove(friendRequest);
             friendRequest.getsData().outGoingRequest.remove(owner);
+        }
+        return confirm;
+    }
+
+    private void addWhenOutgoingIsAccapted(User user)
+    {
+        if (user.getsData().handleRequest(owner, true)) {
+            contacts.add(user);
+            user.getsData().contacts.add(owner);
+            incomingRequests.remove(user);
+            user.getsData().outGoingRequest.remove(owner);
+        }
+        else {
+            user.getsData().incomingRequests.remove(owner);
+            outGoingRequest.remove(user);
         }
     }
 
