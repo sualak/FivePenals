@@ -2,24 +2,30 @@ package main.Case;
 
 import validation.Ensure;
 
+import java.time.Instant;
+import java.util.ArrayList;
+
 //test klasse nicht verwenden
 public class TextSection extends Section
 {
-    private String content;
+    private ArrayList<String> content;
 
-    public TextSection(String content)
+    public TextSection(ArrayList<String> content)
     {
         this.content = content;
     }
 
-    public String getContent()
+    public ArrayList<String> getContent()
     {
         return content;
     }
 
     @Override
-    public void editContent(String content)
+    public void editContent(String newContent, ArrayList<String> content, int position)
     {
-        this.content = Ensure.ensureContentValid(content);
+        Ensure.ensurePositionValid(position, content);
+        Ensure.ensureContentValid(newContent);
+        content.add(position, newContent);
+        setuDate();
     }
 }

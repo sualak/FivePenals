@@ -6,6 +6,7 @@ import main.Case.TextSection;
 import main.dataBase.Keywords;
 import main.user.User;
 
+import java.sql.Array;
 import java.util.*;
 
 import static java.lang.String.format;
@@ -235,6 +236,15 @@ public abstract class Ensure
         isNotBlank(content, "Content");
         isAlphabetic(content, "Content");
         return content;
+    }
+
+    public static boolean ensurePositionValid(int position, ArrayList<String> toCheck)
+    {
+        if(position<=0||position>toCheck.size())
+        {
+            throw new ArrayIndexOutOfBoundsException("Keine gültige Position!");
+        }
+        return true;
     }
 
     //---------------------------Keyword ENSURERS----------------------------------------------------------

@@ -1,6 +1,7 @@
 package main.Case;
 
 import java.time.Instant;
+import java.util.ArrayList;
 
 public abstract class Section
 {
@@ -17,5 +18,11 @@ public abstract class Section
         return uDate;
     }
 
-    public abstract void editContent(String content);
+    public void setuDate()
+    {
+        this.uDate = Instant.now();
+    }
+
+    public abstract void editContent(String newContent, ArrayList<String> content, int position);
+
 }
