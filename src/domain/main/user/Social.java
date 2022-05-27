@@ -72,7 +72,7 @@ public class Social
         }
         return confirm;
     }
-
+    //todo als elsif in handleRequest. alles andre macht keinen sinn du heisl!!!!!!!
     private void addWhenOutgoingIsAccapted(User user)
     {
         if (user.getsData().handleRequest(owner, true)) {
