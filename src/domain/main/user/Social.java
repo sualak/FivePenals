@@ -59,7 +59,7 @@ public class Social
     // no need to clear from sets, to prevent request-spams.
     public boolean handleRequest(User friendRequest, boolean confirm){
         Ensure.ensureContactIsRequesting(friendRequest,incomingRequests);
-        //todo request not handled jet
+        //todo request not handled jet, maybe with showRequests() ?
         if(confirm) {
             contacts.add(friendRequest);
             friendRequest.getsData().contacts.add(owner);
