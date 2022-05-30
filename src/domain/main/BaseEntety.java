@@ -1,6 +1,7 @@
 package main;
 
 import java.time.Instant;
+import java.util.Objects;
 import java.util.UUID;
 
 public abstract class BaseEntety
@@ -42,6 +43,17 @@ public abstract class BaseEntety
 
     public enum IDType{
         USER, CASE
+    }
+
+    public boolean equals(BaseEntety baseEntety)
+    {
+        return id.equals(baseEntety.id);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(getId());
     }
 
     public void printDate(Instant date)
