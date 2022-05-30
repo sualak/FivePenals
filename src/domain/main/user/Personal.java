@@ -57,7 +57,6 @@ public class Personal
 
     public enum Titel{
         TEST, TEST2, TEST3
-
     }
 }
 

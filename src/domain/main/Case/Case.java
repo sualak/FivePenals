@@ -99,12 +99,13 @@ public class Case extends BaseEntety
     public void addUser(User user)
     {
         users.add(Ensure.ensureUserValid(user, users, owner));
+        user.addCase(this);
     }
 
     public void resetVoting(String question)
     {
         Ensure.ensureCaseNotClosed(this);
-        Ensure.ensureStringValid(question, "Question");
+        Ensure.ensureTitelValid(question, "Question");
         this.voting = new Voting(question, this);
         super.updateUDate();
     }

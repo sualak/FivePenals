@@ -1,6 +1,5 @@
 package main.user;
 
-import main.user.User;
 import validation.Ensure;
 
 import java.util.Collections;
@@ -42,7 +41,7 @@ public class Social
     {
         Ensure.ensureUserNotInContacts(owner,receiver,contacts);
         outGoingRequest.add(receiver);
-        receiver.getsData().addUserToIncomingRequests(owner);
+        receiver.getSocial().addUserToIncomingRequests(owner);
         crossAdd(receiver);
     }
 
@@ -62,42 +61,42 @@ public class Social
         //todo request not handled jet, maybe with showRequests() ?
         if(confirm) {
             contacts.add(friendRequest);
-            friendRequest.getsData().contacts.add(owner);
-            friendRequest.getsData().outGoingRequest.remove(owner);
+            friendRequest.getSocial().contacts.add(owner);
+            friendRequest.getSocial().outGoingRequest.remove(owner);
             incomingRequests.remove(friendRequest);
         }
         else{
             incomingRequests.remove(friendRequest);
-            friendRequest.getsData().outGoingRequest.remove(owner);
+            friendRequest.getSocial().outGoingRequest.remove(owner);
         }
         return confirm;
     }
     //todo als elsif in handleRequest. alles andre macht keinen sinn du heisl!!!!!!!
     private void addWhenOutgoingIsAccapted(User user)
     {
-        if (user.getsData().handleRequest(owner, true)) {
+        if (user.getSocial().handleRequest(owner, true)) {
             contacts.add(user);
-            user.getsData().contacts.add(owner);
+            user.getSocial().contacts.add(owner);
             incomingRequests.remove(user);
-            user.getsData().outGoingRequest.remove(owner);
+            user.getSocial().outGoingRequest.remove(owner);
         }
         else {
-            user.getsData().incomingRequests.remove(owner);
+            user.getSocial().incomingRequests.remove(owner);
             outGoingRequest.remove(user);
         }
     }
 
     private void crossAdd(User receiver){
-        if(incomingRequests.contains(receiver) && receiver.getsData().incomingRequests.contains(owner))
+        if(incomingRequests.contains(receiver) && receiver.getSocial().incomingRequests.contains(owner))
             contacts.add(receiver);
-            receiver.getsData().contacts.add(owner);
+            receiver.getSocial().contacts.add(owner);
             outGoingRequest.remove(receiver);
-            receiver.getsData().incomingRequests.remove(owner);
+            receiver.getSocial().incomingRequests.remove(owner);
     }
 
     public void removeContact(User contact){
         contacts.remove(contact);
-        if(contact.getsData().contacts.remove(owner))
+        if(contact.getSocial().contacts.remove(owner))
             contacts.remove(contact);
 
     }

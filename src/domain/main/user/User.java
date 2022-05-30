@@ -5,6 +5,7 @@ import main.Case.Case;
 import main.dataBase.*;
 import static validation.Ensure.*;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,8 +14,8 @@ public class User extends BaseEntety
 {
     private Email eMail;
     private Password password;
-    private final Social sData = new Social(this);
-    private Personal pData;
+    private final Social social = new Social(this);
+    private Personal personal;
     private final Score score = new Score();
     //private final GIdentifiers gIdentifiers = new GIdentifiers();
     private Professions profession;
@@ -23,12 +24,12 @@ public class User extends BaseEntety
     private Language language;
     private final Set<Case> cases = new HashSet<>();
 
-    public User(Email eMail, Password password, Personal pData)
+    public User(String eMail, String password, Personal.Titel titel, String vName, String nName, LocalDate birthday)
     {
         super(IDType.USER);
-        this.eMail = eMail;
-        this.password = password;
-        this.pData = pData;
+        this.eMail = new Email(eMail);
+        this.password = new Password(password);
+        this.personal = new Personal(titel, vName, nName, birthday);
 
 
     }
@@ -40,10 +41,10 @@ public class User extends BaseEntety
 //        this.pData = pData;
 //    }
 
-//    public User()
-//    {
-//        super(IDType.valueOf("USER"));
-//    }
+    public User()
+    {
+        super(IDType.valueOf("USER"));
+    }
 
     public Email geteMail()
     {
@@ -55,14 +56,14 @@ public class User extends BaseEntety
         return password;
     }
 
-    public Social getsData()
+    public Social getSocial()
     {
-        return sData;
+        return social;
     }
 
-    public Personal getpData()
+    public Personal getPersonal()
     {
-        return pData;
+        return personal;
     }
 
     public Score getScore()
@@ -129,4 +130,8 @@ public class User extends BaseEntety
         keywords.remove(db.getKeyword(key));
     }
 
+    public void addCase(Case cases)
+    {
+        this.cases.add(cases);
+    }
 }
