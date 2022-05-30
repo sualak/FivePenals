@@ -35,13 +35,18 @@ public abstract class BaseEntety
         return type;
     }
 
-    public void setuDate()
+    public void updateUDate()
     {
         uDate = Instant.now();
     }
 
     public enum IDType{
         USER, CASE
+    }
+
+    public void printDate(Instant date)
+    {
+        System.out.println(date);
     }
 }
 

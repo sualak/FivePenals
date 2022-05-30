@@ -2,6 +2,9 @@ package main.Case;
 
 import validation.Ensure;
 
+import java.time.Instant;
+import java.util.ArrayList;
+
 public class MediaSection extends Section
 {
     private String fileIdentifier;
@@ -24,12 +27,17 @@ public class MediaSection extends Section
     }
 
     @Override
-    public void editContent(String content)
+    public void editContent(String newContent, ArrayList<String> content, int position)
     {
-
+        Ensure.ensurePositionValid(position, content);
+//        if(Objects.equals(FileIdentifierType.valueOf(fileIdentifier.toUpperCase()).toString(), this.fileIdentifier))
+//        {
+//            l.addAll(position, )
+//        }
+        setuDate();
     }
 
     public enum FileIdentifierType{
-        JPG, JPEG, AVIF, GIF
+        JPG, JPEG, AVIF, GIF, WEBP
     }
 }

@@ -17,8 +17,9 @@ public class Social
 
     public Social(User owner)
     {
-        //ensurer muss geschrieben werden
+        //todo ensurer muss geschrieben werden
         this.owner = owner;
+        //this.owner =Ensure.ensureOwnerNotNull(owner,"user");
     }
 
 
@@ -37,14 +38,18 @@ public class Social
         return Collections.unmodifiableSet(outGoingRequest);
     }
 
-    public void sendRequest(User sender, User receiver)
+    public void sendRequest(User receiver)
     {
-        Ensure.ensureUserNotInContacts(sender,receiver,contacts);
-        outGoingRequest.add(sender);
-        incomingRequests.add(receiver);
+        Ensure.ensureUserNotInContacts(owner,receiver,contacts);
+        outGoingRequest.add(receiver);
+        receiver.getsData().addUserToIncomingRequests(owner);
         crossAdd(receiver);
-
     }
+
+    private void addUserToIncomingRequests(User user){
+        incomingRequests.add(user);
+    }
+
     public User showRequests(){
         for (User request: incomingRequests) {
             return request;
@@ -52,21 +57,49 @@ public class Social
         return null;
     }
     // no need to clear from sets, to prevent request-spams.
-    /*public void handleRequest(User sender, boolean confirm){
-        if (sender.equals(showRequests()))
-            handleRequest(sender, confirm);
-        else throw new IllegalArgumentException("this user didnt send a request");
-    }*/
+    public boolean handleRequest(User friendRequest, boolean confirm){
+        Ensure.ensureContactIsRequesting(friendRequest,incomingRequests);
+        //todo request not handled jet, maybe with showRequests() ?
+        if(confirm) {
+            contacts.add(friendRequest);
+            friendRequest.getsData().contacts.add(owner);
+            friendRequest.getsData().outGoingRequest.remove(owner);
+            incomingRequests.remove(friendRequest);
+        }
+        else{
+            incomingRequests.remove(friendRequest);
+            friendRequest.getsData().outGoingRequest.remove(owner);
+        }
+        return confirm;
+    }
+    //todo als elsif in handleRequest. alles andre macht keinen sinn du heisl!!!!!!!
+    private void addWhenOutgoingIsAccapted(User user)
+    {
+        if (user.getsData().handleRequest(owner, true)) {
+            contacts.add(user);
+            user.getsData().contacts.add(owner);
+            incomingRequests.remove(user);
+            user.getsData().outGoingRequest.remove(owner);
+        }
+        else {
+            user.getsData().incomingRequests.remove(owner);
+            outGoingRequest.remove(user);
+        }
+    }
 
     private void crossAdd(User receiver){
-        if(incomingRequests.contains(receiver))
+        if(incomingRequests.contains(receiver) && receiver.getsData().incomingRequests.contains(owner))
             contacts.add(receiver);
+            receiver.getsData().contacts.add(owner);
+            outGoingRequest.remove(receiver);
+            receiver.getsData().incomingRequests.remove(owner);
     }
 
     public void removeContact(User contact){
-        Ensure.ensureNotNullNotBlank(contact);
-
         contacts.remove(contact);
+        if(contact.getsData().contacts.remove(owner))
+            contacts.remove(contact);
+
     }
 
     public void printContacts(){
