@@ -23,11 +23,13 @@ public class User extends BaseEntety
     private Language language;
     private Set<Case> cases = new HashSet<>();
 
-    public User(Email eMail)
+    public User(Email eMail, Password password, Personal pData)
     {
         super(IDType.USER);
         this.eMail = eMail;
         this.password = password;
+        this.pData = pData;
+
 
     }
 //    public User(Email eMail, Password password, Personal pData)
@@ -93,16 +95,38 @@ public class User extends BaseEntety
         return Collections.unmodifiableSet(cases);
     }
 
-    public void addProfession(int key, DataBaseGIdentifiers db)
+    public void changeProfession(int key, DataBaseGIdentifiers db)
     {
         //kein valid nötig
-        this.profession = db.getProfession(1);
+        this.profession = db.getProfession(key);
+    }
+
+    public void changeLocation(int key, DataBasePIdentifiers db)
+    {
+        this.location = db.getLocation(key);
     }
 
     public void addKeyword(int key, DataBaseGIdentifiers db)
     {
         //kein valid nötig
-        keywords.add(db.getKeyword(1));
+        keywords.add(db.getKeyword(key));
+    }
+
+    public void resetPassword(String newPassword)
+    {
+        ensureValidPassword(newPassword);
+        this.password = new Password(newPassword);
+    }
+
+    public void resetEmail(String newEmail)
+    {
+        ensureValidMail(newEmail);
+        this.eMail = new Email(newEmail);
+    }
+
+    public void removeKeyword(int key, DataBaseGIdentifiers db)
+    {
+        keywords.remove(db.getKeyword(key));
     }
 
 }

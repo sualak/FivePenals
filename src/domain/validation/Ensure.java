@@ -7,6 +7,8 @@ import main.dataBase.Keywords;
 import main.user.Email;
 import main.user.User;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 import static java.lang.String.format;
@@ -270,7 +272,23 @@ public abstract class Ensure
     {
         //Minimum eight characters, at least one letter and one number
         if(!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"))
-            throw new IllegalArgumentException(password + "ist kein valides Passwort");
+            throw new IllegalArgumentException(password + " ist kein valides Passwort");
         return password;
+    }
+
+//---------------------------Personal ENSURERS---------------------------------------------
+    public static String ensureValidName(String name)
+    {
+        if(!name.matches("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"))
+            throw new IllegalArgumentException(name + " ist kein valider Name");
+        return name;
+    }
+
+    public static LocalDate ensureValidBirthday(LocalDate birthday)
+    {
+        long diff = ChronoUnit.YEARS.between(birthday, LocalDate.now());
+        if(diff < 23 || diff > 90)
+            throw new IllegalArgumentException("Kein Valides Geburtsdatum");
+        return birthday;
     }
 }
