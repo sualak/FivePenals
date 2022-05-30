@@ -64,13 +64,12 @@ public class Voting
         return Collections.unmodifiableMap(voted);
     }
 
+    public boolean isOpen()
+    {
+        return isOpen;
+    }
 
     //setter
-    /*public void isOpen(Case aCase, boolean isOpen)
-    {
-        this.isOpen = isOpenValid(isOpen, aCase, this.aCase);
-    }*/
-
     public void setAnswers(String answer)
     {
         answers.add(ensureAnswerValid(answer, "Answer", Collections.unmodifiableList(answers), isOpen));
@@ -81,10 +80,18 @@ public class Voting
     {
         this.cAnswer = ensureGiveCAnswerValid(cAnswer, isOpen, answers);
         String titel = aCase.getTitel();
-        List<User> entriesRight = voted.entrySet().stream().filter((entry) -> entry.getValue().equals(cAnswer)).map(Map.Entry::getKey).toList();
-        entriesRight.forEach((User u) -> u.getScore().seteScoer(titel, "right answer", scoreAddforRightAnswer));
-        List<User> entriesWrong = voted.entrySet().stream().filter((entry) -> !entry.getValue().equals(cAnswer)).map(Map.Entry::getKey).toList();
-        entriesWrong.forEach((User u) -> u.getScore().seteScoer(titel, "wrong answer", scoreAddforWrongAnswer));
+        List<User> entriesRight = voted.entrySet()
+                                    .stream()
+                                    .filter((entry) -> entry.getValue().equals(cAnswer))
+                                    .map(Map.Entry::getKey)
+                                    .toList();
+        entriesRight.forEach((User u) -> u.getScore().seteScoer(titel, "rightAnswer", scoreAddforRightAnswer));
+        List<User> entriesWrong = voted.entrySet()
+                                    .stream()
+                                    .filter((entry) -> !entry.getValue().equals(cAnswer))
+                                    .map(Map.Entry::getKey)
+                                    .toList();
+        entriesWrong.forEach((User u) -> u.getScore().seteScoer(titel, "wrongAnswer", scoreAddforWrongAnswer));
         isOpen = false;
         aCase.setOpen(false);
     }
@@ -143,6 +150,13 @@ public class Voting
             result.set(vote, currentValue);
         }
     }
+
+
+    //old only needed if case closes/opens voting
+    /*public void isOpen(Case aCase, boolean isOpen)
+    {
+        this.isOpen = isOpenValid(isOpen, aCase, this.aCase);
+    }*/
 
     //veralted
 //    private void calcResult()

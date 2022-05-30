@@ -9,10 +9,12 @@ import java.time.format.DateTimeFormatter;
 
 public class ScoreEntry
 {
-    private final Instant cDate = Instant.now();
+    private final Instant createdAt = Instant.now();
     private final String caseTitel;
     private final String reason;
     private final int addedScore;
+
+    public static final String PATTERN_FORMAT = "dd.MM.yyyy";
 
     //constructor
     public ScoreEntry(String caseTitel, String reason, int addedScore)
@@ -20,26 +22,31 @@ public class ScoreEntry
         this.caseTitel = Ensure.ensureStringValid(caseTitel, "Casetitel");
         this.reason = Ensure.ensureStringValid(reason, "reason");
         this.addedScore = addedScore;
+        String className = new Throwable()                // or new `Exception()`
+                .getStackTrace()[1]
+                .getClassName();
+        if(!className.equals("main.user.Score"))
+            throw new RuntimeException("Score Entry is not allowed to be instanced from " + className);
     }
 
     //getter
     public String getcDateAsString()
     {
-        String PATTERN_FORMAT = "dd.MM.yyyy";
+
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERN_FORMAT)
                 .withZone(ZoneId.systemDefault());
-        return formatter.format(cDate);
+        return formatter.format(createdAt);
     }
 
     public Instant getcDateAsInstant()
     {
-        return cDate;
+        return createdAt;
     }
 
     public LocalDate getcDateAsLocalDate()
     {
-        return LocalDate.ofInstant(cDate,ZoneId.systemDefault());
+        return LocalDate.ofInstant(createdAt,ZoneId.systemDefault());
     }
 
     public String getCaseTitel()
@@ -64,7 +71,7 @@ public class ScoreEntry
         return String.format("%s %s %d %s", getcDateAsString(), reason, addedScore, caseTitel);
     }
 
-    //forTestingOnly cDate final must be deleated
+    //for Testing purposes only cDate final must be deleated
 //    public void setcDate(Instant cDate)
 //    {
 //        this.cDate = cDate;

@@ -22,8 +22,34 @@ public class Language
     }
 
     public enum LanguagType{
+        MANDARIN_CHINESE,
+        SPANISH,
+        ENGLISH,
+        HINDI,
+        BENGALI,
+        PORTUGUESE,
+        RUSSIAN,
+        JAPANESE,
+        WESTERN_PUNJABI,
+        VIETNAMESE,
+        MARATHI,
+        TELUGU,
+        TURKISH,
+        KOREAN,
+        FRENCH,
+        GERMAN,
+        ITALIAN,
+        EGYPTIAN_ARABIC,
+        UKRAINIAN,
+        DUTCH,
+        SOMALI,
+        GREEK,
+        ARABIC,
+        CZECH;
+
 
     }
 }
+
 
 
