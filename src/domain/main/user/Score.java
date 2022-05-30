@@ -4,7 +4,6 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,8 +12,8 @@ public class Score
 {
     private final List<ScoreEntry> aScoreHistory = new ArrayList<>();
     private final List<ScoreEntry> eScoreHistory = new ArrayList<>();
-    private int aScore = zero;
-    private int eScoer = zero;
+    private int activeScore = zero;
+    private int expertScore = zero;
     
     private static final int zero = 0;
     private static final int mounthOffset = 3;
@@ -24,14 +23,14 @@ public class Score
     
 
     //getter
-    public int getaScore()
+    public int getActiveScore()
     {
-        return aScore;
+        return activeScore;
     }
 
-    public int geteScoer()
+    public int getExpertScore()
     {
-        return eScoer;
+        return expertScore;
     }
 
     public List<ScoreEntry> getaScoreHistory()
@@ -50,13 +49,13 @@ public class Score
     //setter
     public void setaScore(String caseTitel,String reason, int aScore)
     {
-        this.aScore += aScore;
+        this.activeScore += aScore;
         aScoreHistory.add(new ScoreEntry(caseTitel, reason, aScore));
     }
 
     public void seteScoer(String caseTitel,String reason, int eScoer)
     {
-        this.eScoer += eScoer;
+        this.expertScore += eScoer;
         eScoreHistory.add(new ScoreEntry(caseTitel, reason, eScoer));
     }
 

@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 public class ScoreEntry
 {
-    private final Instant cDate = Instant.now();
+    private final Instant createdAt = Instant.now();
     private final String caseTitel;
     private final String reason;
     private final int addedScore;
@@ -36,17 +36,17 @@ public class ScoreEntry
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERN_FORMAT)
                 .withZone(ZoneId.systemDefault());
-        return formatter.format(cDate);
+        return formatter.format(createdAt);
     }
 
     public Instant getcDateAsInstant()
     {
-        return cDate;
+        return createdAt;
     }
 
     public LocalDate getcDateAsLocalDate()
     {
-        return LocalDate.ofInstant(cDate,ZoneId.systemDefault());
+        return LocalDate.ofInstant(createdAt,ZoneId.systemDefault());
     }
 
     public String getCaseTitel()
