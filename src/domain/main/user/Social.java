@@ -4,6 +4,7 @@ import validation.Ensure;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Social
@@ -17,7 +18,7 @@ public class Social
     public Social(User owner)
     {
         //todo ensurer muss geschrieben werden
-        this.owner = owner;
+        this.owner = Objects.requireNonNull(owner,"owner");
         //this.owner =Ensure.ensureOwnerNotNull(owner,"user");
     }
 

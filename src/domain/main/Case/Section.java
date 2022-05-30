@@ -5,22 +5,22 @@ import java.util.ArrayList;
 
 public abstract class Section
 {
-    private final Instant cDate = Instant.now();
-    private Instant uDate = Instant.now();
+    private final Instant createdAt = Instant.now();
+    private Instant updatedAt = Instant.now();
 
-    public Instant getcDate()
+    public Instant getCreatedAt()
     {
-        return cDate;
+        return createdAt;
     }
 
-    public Instant getuDate()
+    public Instant getUpdatedAt()
     {
-        return uDate;
+        return updatedAt;
     }
 
-    public void setuDate()
+    public void setUpdatedAt()
     {
-        this.uDate = Instant.now();
+        this.updatedAt = Instant.now();
     }
 
     public abstract void editContent(String newContent, ArrayList<String> content, int position);

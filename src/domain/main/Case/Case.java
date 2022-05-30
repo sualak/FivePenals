@@ -3,6 +3,7 @@ package main.Case;
 
 import main.*;
 import main.dataBase.DataBaseGIdentifiers;
+import main.dataBase.ID;
 import main.dataBase.Keywords;
 import main.dataBase.Professions;
 import main.user.User;
@@ -25,15 +26,16 @@ public class Case extends BaseEntety
     public Case(String titel, String question, User owner)
     {
         super(IDType.CASE);
-        this.titel = Ensure.ensureTitelValid(titel, "Titel");
-        this.voting = new Voting(Ensure.ensureTitelValid(question, "Question"), this);
+        this.titel = Ensure.ensureNonNullNonBlankValid(titel, "Titel");
+        this.voting = new Voting(Ensure.ensureNonNullNonBlankValid(question, "Question"), this);
         this.owner = Ensure.ensureOwnerValid(owner, users, getOwner());
+        ID.addCase(this);
     }
 
     public void setOpen(boolean open)
     {
         isOpen = open;
-        super.updateUDate();
+        super.setUpdatedAt();
     }
 
     public String getTitel()
@@ -43,7 +45,7 @@ public class Case extends BaseEntety
 
     public void setTitel(String titel)
     {
-        Ensure.ensureTitelValid(titel, "Titel");
+        Ensure.ensureNonNullNonBlankValid(titel, "Titel");
         this.titel = titel;
     }
 
@@ -86,14 +88,14 @@ public class Case extends BaseEntety
     {
         Ensure.ensureCaseNotClosed(this);
         professions.add(db.getProfession(key));
-        super.updateUDate();
+        super.setUpdatedAt();
     }
 
     public void addKeywords(int key, DataBaseGIdentifiers db)
     {
         Ensure.ensureCaseNotClosed(this);
         keywords.add(db.getKeyword(key));
-        super.updateUDate();
+        super.setUpdatedAt();
     }
 
     public void addUser(User user)
@@ -105,16 +107,16 @@ public class Case extends BaseEntety
     public void resetVoting(String question)
     {
         Ensure.ensureCaseNotClosed(this);
-        Ensure.ensureTitelValid(question, "Question");
+        Ensure.ensureNonNullNonBlankValid(question, "Question");
         this.voting = new Voting(question, this);
-        super.updateUDate();
+        super.setUpdatedAt();
     }
 
     public void addSection(Section section)
     {
         Ensure.ensureCaseNotClosed(this);
         sections.add(Ensure.ensureSectionValid(this, section, this.owner));
-        super.updateUDate();
+        super.setUpdatedAt();
 
     }
 
@@ -122,21 +124,21 @@ public class Case extends BaseEntety
     {
         Ensure.ensureCaseNotClosed(this);
         sections.remove(Ensure.ensureSectionValid(this, section, this.owner));
-        super.updateUDate();
+        super.setUpdatedAt();
     }
 
     public void removeKeyword(int key, DataBaseGIdentifiers dataBaseGIdentifiers)
     {
         Ensure.ensureCaseNotClosed(this);
         keywords.remove(dataBaseGIdentifiers.getKeyword(key));
-        super.updateUDate();
+        super.setUpdatedAt();
     }
 
     public void removeProfessions(int key, DataBaseGIdentifiers dataBaseGIdentifiers)
     {
         Ensure.ensureCaseNotClosed(this);
         professions.remove(dataBaseGIdentifiers.getProfession(key));
-        super.updateUDate();
+        super.setUpdatedAt();
     }
 
 }

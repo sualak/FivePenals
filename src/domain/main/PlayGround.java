@@ -3,49 +3,46 @@ package main;
 import main.Case.Case;
 import main.dataBase.DataBaseGIdentifiers;
 import main.dataBase.Professions;
+import main.user.Personal;
 import main.user.ScoreEntry;
 import main.user.User;
 
 import java.io.IOException;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.Period;
 
 public class PlayGround
 {
     public static void main(String[] args) throws IOException
     {
-        User u = new User();
+        User u1 = new User("berni.piffel@gmx.at", "bernispasswort1", Personal.Titel.INGENIEUR, "berni","piffel", LocalDate.of(1996,5,31));
         User u2 = new User();
         User u3 = new User();
-//        DataBaseGIdentifiers db = new DataBaseGIdentifiers("C:\\Users\\suala\\Downloads\\Professions.csv","C:\\Users\\suala\\Downloads\\Keywords.csv");
-//
-//        Case c = new Case("testT", "testQ", u);
-//        c.getVoting().setAnswers("test");
-//        c.getVoting().setAnswers("testA");
-//
-//        u2.addProfession(1,db);
-//        u3.addProfession(1,db);
-//        u2.addKeyword(0,db);
-//
-//        c.addProfession(1,db);
-//        c.addKeywords(0,db);
-//        c.addUser(u2);
-//        c.addUser(u3);
-//        c.getVoting().addVote(0,u2);
-//        c.getVoting().addVote(1,u3);
-//        c.getVoting().printResult(u2);
-//        u.addProfession(1, db);
-//        System.out.println(u.getProfession().getName());
-//        u3.getScore().printAllAScoreEntrys();
-//        c.getVoting().giveCAnswer(1);
-//        System.out.println(u2.getScore().geteScoreHistory());
-//        System.out.println(u3.getScore().geteScoreHistory());
-//        System.out.println(c.isOpen());
-//        System.out.println(c.getVoting().isOpen());
+        DataBaseGIdentifiers db = new DataBaseGIdentifiers("C:\\Users\\suala\\Downloads\\Professions.csv","C:\\Users\\suala\\Downloads\\Keywords.csv");
 
-        u3.getScore().setaScore("test","test", 1);
+        Case c = new Case("testT", "testQ", u1);
+        c.getVoting().setAnswers("test");
+        c.getVoting().setAnswers("testA");
+
+        u2.changeProfession(1,db);
+        u3.changeProfession(1,db);
+        u2.addKeyword(0,db);
+
+        c.addProfession(1,db);
+        c.addKeywords(0,db);
+        c.addUser(u2);
+        c.addUser(u3);
+        c.getVoting().addVote(0,u2);
+        c.getVoting().addVote(1,u3);
+        c.getVoting().printResult(u2);
+        u1.changeProfession(1, db);
         u3.getScore().printAllAScoreEntrys();
-        ScoreEntry s = new ScoreEntry("test","test", 1);
+        c.getVoting().giveCAnswer(1);
+        System.out.println(u2.getScore().geteScoreHistory());
+        System.out.println(u3.getScore().geteScoreHistory());
+        System.out.println(c.isOpen());
+        System.out.println(c.getVoting().isOpen());
 
 //        for testing purposes only
 //        for (int i = 0; i < 50; i++)

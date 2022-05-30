@@ -1,13 +1,15 @@
 package main.dataBase;
 
+import validation.Ensure;
+
 public class Language
 {
-    private String name;
-    private LanguagType type;
+    private final String name;
+    private final LanguagType type;
 
     public Language(String name, LanguagType type)
     {
-        this.name = name;
+        this.name = Ensure.ensureNonNullNonBlankValid(name,"name");
         this.type = type;
     }
 
@@ -22,32 +24,21 @@ public class Language
     }
 
     public enum LanguagType{
-        MANDARIN_CHINESE,
         SPANISH,
         ENGLISH,
-        HINDI,
-        BENGALI,
         PORTUGUESE,
         RUSSIAN,
         JAPANESE,
-        WESTERN_PUNJABI,
         VIETNAMESE,
-        MARATHI,
-        TELUGU,
         TURKISH,
         KOREAN,
         FRENCH,
         GERMAN,
         ITALIAN,
-        EGYPTIAN_ARABIC,
-        UKRAINIAN,
         DUTCH,
-        SOMALI,
         GREEK,
         ARABIC,
-        CZECH;
-
-
+        CZECH
     }
 }
 

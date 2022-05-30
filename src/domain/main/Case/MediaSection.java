@@ -2,7 +2,6 @@ package main.Case;
 
 import validation.Ensure;
 
-import java.time.Instant;
 import java.util.ArrayList;
 
 public class MediaSection extends Section
@@ -34,7 +33,7 @@ public class MediaSection extends Section
 //        {
 //            l.addAll(position, )
 //        }
-        setuDate();
+        setUpdatedAt();
     }
 
     public enum FileIdentifierType{

@@ -2,14 +2,11 @@ package validation;
 
 import main.Case.Case;
 import main.Case.Section;
-import main.Case.TextSection;
 import main.dataBase.Keywords;
-import main.user.Email;
 import main.user.User;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.sql.Array;
 import java.util.*;
 
 import static java.lang.String.format;
@@ -96,7 +93,7 @@ public abstract class Ensure
         return wert;
     }
 
-    public static String ensureTitelValid(String wert, String attribut)
+    public static String ensureNonNullNonBlankValid(String wert, String attribut)
     {
         isNotNull(wert, attribut);
         isNotBlank(wert, attribut);

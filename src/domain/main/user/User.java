@@ -8,6 +8,7 @@ import static validation.Ensure.*;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class User extends BaseEntety
@@ -30,8 +31,7 @@ public class User extends BaseEntety
         this.eMail = new Email(eMail);
         this.password = new Password(password);
         this.personal = new Personal(titel, vName, nName, birthday);
-
-
+        ID.addUser(this);
     }
 //    public User(Email eMail, Password password, Personal pData)
 //    {
@@ -132,6 +132,6 @@ public class User extends BaseEntety
 
     public void addCase(Case cases)
     {
-        this.cases.add(cases);
+        this.cases.add(Objects.requireNonNull(cases, "Case"));
     }
 }
