@@ -22,11 +22,11 @@ public class Case extends BaseEntety
     private final List<Section> sections = new ArrayList<>();
     private boolean isOpen = true;
 
-    public Case(String titel, String Question, User owner)
+    public Case(String titel, String question, User owner)
     {
         super(IDType.CASE);
         this.titel = Ensure.ensureTitelValid(titel, "Titel");
-        this.voting = new Voting(Question, this);
+        this.voting = new Voting(Ensure.ensureTitelValid(question, "Question"), this);
         this.owner = Ensure.ensureOwnerValid(owner, users, getOwner());
     }
 

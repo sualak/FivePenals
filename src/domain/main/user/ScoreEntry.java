@@ -19,14 +19,15 @@ public class ScoreEntry
     //constructor
     public ScoreEntry(String caseTitel, String reason, int addedScore)
     {
-        this.caseTitel = Ensure.ensureStringValid(caseTitel, "Casetitel");
+        this.caseTitel = Ensure.ensureTitelValid(caseTitel, "Casetitel");
         this.reason = Ensure.ensureStringValid(reason, "reason");
         this.addedScore = addedScore;
-        String className = new Throwable()                // or new `Exception()`
-                .getStackTrace()[1]
-                .getClassName();
-        if(!className.equals("main.user.Score"))
-            throw new RuntimeException("Score Entry is not allowed to be instanced from " + className);
+//        String className = new Throwable()                // or new `Exception()`
+//                .getStackTrace()[1]
+//                .getClassName();
+        String instance = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass().getName();
+        if(!instance.equals("main.user.Score"))
+            throw new RuntimeException("Score Entry is not allowed to be instanced from " + instance);
     }
 
     //getter
