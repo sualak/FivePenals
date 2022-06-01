@@ -33,13 +33,6 @@ public class User extends BaseEntety
         this.personal = new Personal(titel, vName, nName, birthday);
         ID.addUser(this);
     }
-//    public User(Email eMail, Password password, Personal pData)
-//    {
-//        super(IDType.USER);
-//        this.eMail = ensureValidMail(eMail);
-//        this.password = password;
-//        this.pData = pData;
-//    }
 
     public User()
     {
@@ -137,5 +130,26 @@ public class User extends BaseEntety
     public void addCase(Case cases)
     {
         this.cases.add(Objects.requireNonNull(cases, "Case"));
+    }
+
+    public void changeFirstName(String firstname)
+    {
+        personal.setvName(firstname);
+    }
+
+    public void changeLastName(String lastname)
+    {
+        personal.setnName(lastname);
+    }
+
+    public void changeTitel(Personal.Titel titel)
+    {
+        personal.setTitel(titel);
+    }
+
+    public void changeLanguage(int key, DataBasePIdentifiers db)
+    {
+        this.language = db.getLanguage(key);
+        super.setUpdatedAt();
     }
 }
