@@ -100,13 +100,13 @@ public class User extends BaseEntety
     {
         //kein valid nötig
         this.profession = db.getProfession(key);
-        super.updateUDate();
+        super.setUpdatedAt();
     }
 
     public void changeLocation(int key, DataBasePIdentifiers db)
     {
         this.location = db.getLocation(key);
-        super.updateUDate();
+        super.setUpdatedAt();
     }
 
     public void addKeyword(int key, DataBaseGIdentifiers db)
@@ -119,14 +119,14 @@ public class User extends BaseEntety
     {
         ensureValidPassword(newPassword);
         this.password = new Password(newPassword);
-        super.updateUDate();
+        super.setUpdatedAt();
     }
 
     public void resetEmail(String newEmail)
     {
         ensureValidMail(newEmail);
         this.eMail = new Email(newEmail);
-        super.updateUDate();
+        super.setUpdatedAt();
     }
 
     public void removeKeyword(int key, DataBaseGIdentifiers db)
