@@ -24,7 +24,13 @@ public class Location
     }
 
     public enum LocationType{
-
+        EUROPE,
+        ASIA,
+        AFRICA,
+        NORTH_AMERICA,
+        SOUTH_AMERICA,
+        AUSTRALIA,
+        ANTARCTICA
     }
 }
 

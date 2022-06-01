@@ -131,7 +131,6 @@ public abstract class Ensure
     {
         isNotNull(wert, attribut);
         isNotBlank(wert, attribut);
-        isAlphabetic(wert, attribut);
         isInRange(answers.size(), zero, maxAnswerListSize, "Amount of answers");
         if(isContainedList(wert, answers))
             throw new IllegalArgumentException("Antwort ist schon entahlten");
