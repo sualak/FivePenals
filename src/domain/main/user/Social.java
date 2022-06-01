@@ -43,7 +43,8 @@ public class Social
         Ensure.ensureUserNotInContacts(owner,receiver,contacts);
         outGoingRequest.add(receiver);
         receiver.getSocial().addUserToIncomingRequests(owner);
-        crossAdd(receiver);
+        if(incomingRequests.contains(receiver)&&outGoingRequest.contains(receiver))
+            crossAdd(receiver);
     }
 
     private void addUserToIncomingRequests(User user){

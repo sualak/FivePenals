@@ -30,7 +30,7 @@ public class Voting
     //constructor
     public Voting(String quiestion, Case aCase)
     {
-        this.question = ensureStringValid(quiestion, "Question");
+        this.question = ensureNonNullNonBlankValid(quiestion, "Question");
         this.aCase = ensureCaseValid(aCase, "Case");
     }
 
@@ -121,6 +121,17 @@ public class Voting
                 sb.append(String.format("%.2f",(antwortSumme / sum) * toPerzent)).append("% ").append(answers.get(i)).append("\n");
             else
                 sb.append(0 + "% ").append(answers.get(i)).append("\n");
+        }
+        System.out.println(sb);
+    }
+
+    public void printQuestionAndAnswers()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append(question).append("\n\n");
+        for (String s: answers)
+        {
+            sb.append(s).append("\n");
         }
         System.out.println(sb);
     }
