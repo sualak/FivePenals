@@ -23,6 +23,6 @@ public abstract class Section
         this.updatedAt = Instant.now();
     }
 
-    public abstract void editContent(String newContent, ArrayList<String> content, int position);
+    public abstract void editContent(String newContent, String content, boolean beginning);
 
 }

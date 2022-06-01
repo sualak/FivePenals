@@ -9,6 +9,7 @@ import main.dataBase.Professions;
 import main.user.User;
 import validation.Ensure;
 
+import java.io.IOException;
 import java.util.*;
 
 public class Case extends BaseEntety
@@ -117,13 +118,37 @@ public class Case extends BaseEntety
         Ensure.ensureCaseNotClosed(this);
         sections.add(Ensure.ensureSectionValid(this, section, this.owner));
         super.setUpdatedAt();
-
     }
 
-    public void removeSection(Section section)
+    public void editTextsection(int sectionIndex, String newContent, String content, boolean beginning)
     {
         Ensure.ensureCaseNotClosed(this);
-        sections.remove(Ensure.ensureSectionValid(this, section, this.owner));
+        Ensure.ensureRangeValid(sectionIndex, sections);
+        sections.get(sectionIndex).editContent(newContent, content, beginning);
+        super.setUpdatedAt();
+    }
+
+    public void replaceTextsectionContent(int sectionIndex, String newContent)
+    {
+        Ensure.ensureCaseNotClosed(this);
+        Ensure.ensureRangeValid(sectionIndex, sections);
+        ((TextSection) sections.get(sectionIndex)).replaceSectionContent(newContent);
+        super.setUpdatedAt();
+    }
+
+    public void addPictureToMediasection(int sectionIndex, String path) throws IOException
+    {
+        Ensure.ensureCaseNotClosed(this);
+        Ensure.ensureRangeValid(sectionIndex, sections);
+        ((MediaSection) sections.get(sectionIndex)).addPicture(path);
+        super.setUpdatedAt();
+    }
+
+    public void removeSection(int sectionIndex)
+    {
+        Ensure.ensureCaseNotClosed(this);
+        Ensure.ensureRangeValid(sectionIndex, sections);
+        sections.remove(sections.get(sectionIndex));
         super.setUpdatedAt();
     }
 
