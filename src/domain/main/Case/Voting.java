@@ -150,33 +150,4 @@ public class Voting
             result.set(vote, currentValue);
         }
     }
-
-
-    //old only needed if case closes/opens voting
-    /*public void isOpen(Case aCase, boolean isOpen)
-    {
-        this.isOpen = isOpenValid(isOpen, aCase, this.aCase);
-    }*/
-
-    //veralted
-//    private void calcResult()
-//    {
-//        int size = aCase.getKeywords().size() + aCase.getProfessions().size();
-//        if (size != zero)
-//        {
-//            for (int i = 0; i < answers.size(); i++)
-//            {
-//                double currentValue = zero;
-//                Integer a = i;
-//                List<User> entries = voted.entrySet().stream().filter((entry) -> entry.getValue().equals(a)).map(Map.Entry::getKey).toList();
-//                for (User user : entries)
-//                {
-//                    int sumOfMatchedKeywords = calcUserResult(user, aCase.getProfessions(), aCase.getKeywords());
-//                    if (sumOfMatchedKeywords != zero)
-//                        currentValue += (double) sumOfMatchedKeywords / size;
-//                }
-//                result.set(i, currentValue);
-//            }
-//        }
-//    }
 }

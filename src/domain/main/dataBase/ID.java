@@ -3,15 +3,12 @@ package main.dataBase;
 import main.Case.Case;
 import main.user.User;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public abstract class ID
 {
-    private static final Map<UUID, User> users = new HashMap<UUID, User>();
-    private static final Map<UUID, Case> cases = new HashMap<UUID, Case>();
+    private static final Map<UUID, User> users = new HashMap<>();
+    private static final Map<UUID, Case> cases = new HashMap<>();
 
     public static Map<UUID, User> getUsers()
     {
@@ -26,5 +23,15 @@ public abstract class ID
     public static Map<UUID, Case> getCases()
     {
         return Collections.unmodifiableMap(cases);
+    }
+
+    public static void addUser(User user)
+    {
+        users.put(user.getId(), Objects.requireNonNull(user,"User"));
+    }
+
+    public static void addCase(Case aCase)
+    {
+        cases.put(aCase.getId(), Objects.requireNonNull(aCase,"case"));
     }
 }

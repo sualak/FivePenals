@@ -55,9 +55,12 @@ public class Personal
         this.titel = titel;
     }
 
-    public enum Titel{
-        TEST, TEST2, TEST3
-
+    public enum Titel {
+        BACHELOR,
+        MASTER,
+        MAGISTER,
+        INGENIEUR,
+        DOKTOR
     }
 }
 

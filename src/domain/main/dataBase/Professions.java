@@ -1,5 +1,7 @@
 package main.dataBase;
 
+import validation.Ensure;
+
 public class Professions
 {
     private final String name;
@@ -7,7 +9,7 @@ public class Professions
 
     public Professions(String name, ProfessionType type)
     {
-        this.name = name;
+        this.name = Ensure.ensureNonNullNonBlankValid(name,"name");
         this.type = type;
     }
 
@@ -22,40 +24,8 @@ public class Professions
     }
 
     public enum ProfessionType{
-        IMMUNOLOGIST,
-        ANESTHESIOLOGIST,
-        CARDIOLOGIST,
-        COLON_AND_RECTAL_SURGEON,
-        DERMATOLOGIST,
-        ENDOCRINOLOGIST,
-        EMERGENCY_MEDICINE_SPECIALIST,
-        GASTROENTEROLOGIST,
-        GERIATRIC_MEDICINE_SPECIALIST,
-        HEMATOLOGIST,
-        HOSPICE_AND_PALLIATIVE_MEDICINE_SPECIALIST,
-        INFECTIOUS_DISEASE_SPECIALIST,
-        INTERNIST,
-        MEDICAL_GENETICIST,
-        NEPHROLOGIST,
-        NEUROLOGIST,
-        OBSTETRICIAN_AND_GYNECOLOGIST,
-        ONCOLOGIST,
-        OPHTALMOLOGIST,
-        OSTEPATH,
-        OTOLARYNOLOGIST,
-        PATHOLOGIST,
-        PEDIATRICAN,
-        PHYSIATRIST,
-        PLSASTIC_SURGEON,
-        PODIATRIST,
-        PREVENTIVE_MEDICINE_SPECIALIST,
-        PSYCHIATRIST,
-        PULMONOLOGIST,
-        RHEUMATOLOGIST,
-        SLEEP_MEDICINE_SPECIALIST,
-        SPORTS_MEDICINE_SPECIALIST,
-        GENERAL_SURGEON,
-        UROLOGIST;
+        PROFESSION,
+        SUBPROFESSION,
     }
 }
 

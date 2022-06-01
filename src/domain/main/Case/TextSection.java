@@ -2,7 +2,6 @@ package main.Case;
 
 import validation.Ensure;
 
-import java.time.Instant;
 import java.util.ArrayList;
 
 //test klasse nicht verwenden
@@ -26,6 +25,6 @@ public class TextSection extends Section
         Ensure.ensurePositionValid(position, content);
         Ensure.ensureContentValid(newContent);
         content.add(position, newContent);
-        setuDate();
+        setUpdatedAt();
     }
 }

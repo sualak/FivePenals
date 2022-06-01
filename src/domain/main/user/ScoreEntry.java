@@ -19,33 +19,28 @@ public class ScoreEntry
     //constructor
     public ScoreEntry(String caseTitel, String reason, int addedScore)
     {
-        this.caseTitel = Ensure.ensureTitelValid(caseTitel, "Casetitel");
+        this.caseTitel = Ensure.ensureNonNullNonBlankValid(caseTitel, "Casetitel");
         this.reason = Ensure.ensureStringValid(reason, "reason");
         this.addedScore = addedScore;
-//        String className = new Throwable()                // or new `Exception()`
-//                .getStackTrace()[1]
-//                .getClassName();
         String instance = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass().getName();
         if(!instance.equals("main.user.Score"))
             throw new RuntimeException("Score Entry is not allowed to be instanced from " + instance);
     }
 
     //getter
-    public String getcDateAsString()
+    public String getCreatedAtAsString()
     {
-
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERN_FORMAT)
                 .withZone(ZoneId.systemDefault());
         return formatter.format(createdAt);
     }
 
-    public Instant getcDateAsInstant()
+    public Instant getCreatedAtAsInstant()
     {
         return createdAt;
     }
 
-    public LocalDate getcDateAsLocalDate()
+    public LocalDate getCreatedAtAsLocalDate()
     {
         return LocalDate.ofInstant(createdAt,ZoneId.systemDefault());
     }
@@ -69,7 +64,7 @@ public class ScoreEntry
     //toString
     public String toString()
     {
-        return String.format("%s %s %d %s", getcDateAsString(), reason, addedScore, caseTitel);
+        return String.format("%s %s %d %s", getCreatedAtAsString(), reason, addedScore, caseTitel);
     }
 
     //for Testing purposes only cDate final must be deleated

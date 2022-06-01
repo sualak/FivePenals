@@ -1,13 +1,15 @@
 package main.dataBase;
 
+import validation.Ensure;
+
 public class Location
 {
-    private String name;
-    private LocationType type;
+    private final String name;
+    private final LocationType type;
 
     public Location(String name, LocationType type)
     {
-        this.name = name;
+        this.name = Ensure.ensureNonNullNonBlankValid(name,"name");
         this.type = type;
     }
 

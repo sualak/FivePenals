@@ -1,13 +1,14 @@
 package main;
 
 import java.time.Instant;
+import java.util.Objects;
 import java.util.UUID;
 
 public abstract class BaseEntety
 {
     private final UUID id = UUID.randomUUID();
-    private final Instant cDate = Instant.now();
-    private Instant uDate = Instant.now();
+    private final Instant createdAt = Instant.now();
+    private Instant updatedAt = Instant.now();
     private final IDType type;
 
     public BaseEntety(IDType type)
@@ -20,14 +21,14 @@ public abstract class BaseEntety
         return id;
     }
 
-    public Instant getcDate()
+    public Instant getCreatedAt()
     {
-        return cDate;
+        return createdAt;
     }
 
-    public Instant getuDate()
+    public Instant getUpdatedAt()
     {
-        return uDate;
+        return updatedAt;
     }
 
     public IDType getType()
@@ -35,18 +36,29 @@ public abstract class BaseEntety
         return type;
     }
 
-    public void updateUDate()
+    public void setUpdatedAt()
     {
-        uDate = Instant.now();
+        updatedAt = Instant.now();
     }
 
-    public enum IDType{
-        USER, CASE
+    public boolean equals(BaseEntety baseEntety)
+    {
+        return id.equals(baseEntety.id);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(getId());
     }
 
     public void printDate(Instant date)
     {
         System.out.println(date);
+    }
+
+    public enum IDType{
+        USER, CASE
     }
 }
 

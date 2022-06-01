@@ -23,9 +23,9 @@ public class PlaygroundUser
 //        User user = new User(email, password);
 //        System.out.println(email.geteMail());
 //        System.out.println(password.getPassword());
-        Personal test = new Personal(Personal.Titel.TEST2, "Test", "Test", LocalDate.of(1990,1,1));
+//        Personal test = new Personal(Personal.Titel.TEST2, "Test", "Test", LocalDate.of(1990,1,1));
 //        System.out.println(test.getvName());
-        User user = new User(email, password, test);
+//        User user = new User(email, password, test);
 //        DataBaseGIdentifiers dataBaseGIdentifiers = new DataBaseGIdentifiers();
 //        user.removeKeyword(1,dataBaseGIdentifiers);
 //        System.out.println(user.getPassword().getPassword());
