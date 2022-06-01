@@ -23,10 +23,10 @@ public class PlaygroundUser
 //        User user = new User(email, password);
 //        System.out.println(email.geteMail());
 //        System.out.println(password.getPassword());
-        Personal test = new Personal(Personal.Titel.MASTER, "Test", "Test", LocalDate.of(1990,1,1));
+//        Personal test = new Personal(Personal.Titel.MASTER, "Test", "Test", LocalDate.of(2001,11,7));
 //        System.out.println(test.getvName());
 //        User user = new User(email, password, test);
-        User user = new User("test@test.at", "Testpasswort1", Personal.Titel.DOKTOR, "Test", "Test", LocalDate.of(1990, 1, 1));
+        User user = new User("test@test.at", "Testpasswort1", Personal.Titel.DOKTOR, "Test", "Test", LocalDate.of(2001, 11, 7));
 //        DataBaseGIdentifiers dataBaseGIdentifiers = new DataBaseGIdentifiers();
 //        user.removeKeyword(1,dataBaseGIdentifiers);
 //        System.out.println(user.getPassword().getPassword());

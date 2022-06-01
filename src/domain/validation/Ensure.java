@@ -303,7 +303,7 @@ public abstract class Ensure
     public static LocalDate ensureValidBirthday(LocalDate birthday)
     {
         long diff = ChronoUnit.YEARS.between(birthday, LocalDate.now());
-        if(diff < 23 || diff > 90)
+        if(diff < 20 || diff > 90)
             throw new IllegalArgumentException("Kein Valides Geburtsdatum");
         return birthday;
     }
