@@ -106,6 +106,7 @@ public class User extends BaseEntety
     {
         //kein valid nötig
         keywords.add(db.getKeyword(key));
+        super.setUpdatedAt();
     }
 
     public void resetPassword(String newPassword)
@@ -125,6 +126,7 @@ public class User extends BaseEntety
     public void removeKeyword(int key, DataBaseGIdentifiers db)
     {
         keywords.remove(db.getKeyword(key));
+        super.setUpdatedAt();
     }
 
     public void addCase(Case cases)
@@ -154,5 +156,25 @@ public class User extends BaseEntety
     {
         this.language = db.getLanguage(key);
         super.setUpdatedAt();
+    }
+
+    @Override
+    public String toString()
+    {
+        return "--------------User--------------\n" +
+                "Vorname: " + personal.getnName() +
+                "\nNachname: " + personal.getnName() +
+                "\nTitel: " + personal.getTitel() +
+                "\nGeburtsdatum: " + personal.getBirthday() +
+                "\nEmail: " + eMail.geteMail() +
+                "\nPasswort: " + password.getPassword() +
+                "\nActive Score: " + score.getActiveScore() +
+                "\nExpert Score: " + score.getExpertScore() +
+                "\nSprache: " + getLanguage() +
+                "\nOrt: " + getLocation() +
+                "\nProfession: " + getProfession() +
+                "\nKeywords: " + getKeywords() +
+                "\nKontakte: " + social.getContacts();
+
     }
 }

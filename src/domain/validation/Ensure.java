@@ -233,17 +233,26 @@ public abstract class Ensure
     {
         isNotNull(content, "Content");
         isNotBlank(content, "Content");
-        isAlphabetic(content, "Content");
         return content;
     }
 
-    public static boolean ensurePositionValid(int position, ArrayList<String> toCheck)
+    public static boolean ensureRangeValid(int position, List<Section> toCheck)
     {
         if(position<=0||position>toCheck.size())
         {
             throw new ArrayIndexOutOfBoundsException("Keine gültige Position!");
         }
         return true;
+    }
+
+    //MediaSection
+
+    public static void ensurePathValid(String path)
+    {
+        if(!path.matches("^(?:[a-z]:)?[\\\\]{0,2}(?:[.\\\\ ](?![.\\\\\\n])|[^<>:\"|?*.\\\\ \\n])+$"))
+        {
+            throw new IllegalArgumentException("Der Pfad ist ungültig!");
+        }
     }
 
     //---------------------------Keyword ENSURERS----------------------------------------------------------
@@ -303,7 +312,7 @@ public abstract class Ensure
     public static LocalDate ensureValidBirthday(LocalDate birthday)
     {
         long diff = ChronoUnit.YEARS.between(birthday, LocalDate.now());
-        if(diff < 23 || diff > 90)
+        if(diff < 20 || diff > 90)
             throw new IllegalArgumentException("Kein Valides Geburtsdatum");
         return birthday;
     }

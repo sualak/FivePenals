@@ -7,24 +7,33 @@ import java.util.ArrayList;
 //test klasse nicht verwenden
 public class TextSection extends Section
 {
-    private ArrayList<String> content;
+    private String content;
 
-    public TextSection(ArrayList<String> content)
+    public TextSection(String content)
     {
         this.content = content;
     }
 
-    public ArrayList<String> getContent()
+    public String getContent()
     {
         return content;
     }
 
     @Override
-    public void editContent(String newContent, ArrayList<String> content, int position)
+    public void editContent(String newContent, String content, boolean beginning)
     {
-        Ensure.ensurePositionValid(position, content);
+        if(beginning)
+        {
+            content = Ensure.ensureContentValid(newContent)+content;
+        }
+        else {
+            content += Ensure.ensureContentValid(newContent);
+        }
+    }
+
+    public void replaceSectionContent(String newContent)
+    {
         Ensure.ensureContentValid(newContent);
-        content.add(position, newContent);
-        setUpdatedAt();
+        content = newContent;
     }
 }
