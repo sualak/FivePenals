@@ -5,6 +5,7 @@ import main.dataBase.Keywords;
 import main.user.User;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static validation.Ensure.*;
 
@@ -80,18 +81,29 @@ public class Voting
     {
         this.cAnswer = ensureGiveCAnswerValid(cAnswer, isOpen, answers);
         String titel = aCase.getTitel();
-        List<User> entriesRight = voted.entrySet()
-                                    .stream()
-                                    .filter((entry) -> entry.getValue().equals(cAnswer))
-                                    .map(Map.Entry::getKey)
-                                    .toList();
-        entriesRight.forEach((User u) -> u.getScore().seteScoer(titel, "rightAnswer", scoreAddforRightAnswer));
-        List<User> entriesWrong = voted.entrySet()
-                                    .stream()
-                                    .filter((entry) -> !entry.getValue().equals(cAnswer))
-                                    .map(Map.Entry::getKey)
-                                    .toList();
-        entriesWrong.forEach((User u) -> u.getScore().seteScoer(titel, "wrongAnswer", scoreAddforWrongAnswer));
+
+        Map<Boolean, List<Map.Entry<User, Integer>>> collect = voted.entrySet()
+                .stream()
+                .collect(Collectors.partitioningBy(userIntegerEntry -> userIntegerEntry.getValue().equals(cAnswer)));
+
+        collect.get(false).forEach(userIntegerEntry -> userIntegerEntry.getKey().getScore().seteScoer(titel,"wrongAnswer",scoreAddforWrongAnswer));
+        collect.get(true).forEach(userIntegerEntry -> userIntegerEntry.getKey().getScore().seteScoer(titel,"rightAnswer",scoreAddforRightAnswer));
+
+//        List<User> entriesRight = voted.entrySet()
+//                                    .stream()
+//                                    .filter((entry) -> entry.getValue().equals(cAnswer))
+//                                    .map(Map.Entry::getKey)
+//                                    .toList();
+//        List<User> entriesWrong = voted.entrySet()
+//                                    .stream()
+//                                    .filter((entry) -> !entry.getValue().equals(cAnswer))
+//                                    .map(Map.Entry::getKey)
+//                                    .toList();
+//        long end = System.nanoTime();
+//        System.out.println(end-start);
+//        entriesWrong.forEach((User u) -> u.getScore().seteScoer(titel, "wrongAnswer", scoreAddforWrongAnswer));
+//        entriesRight.forEach((User u) -> u.getScore().seteScoer(titel, "rightAnswer", scoreAddforRightAnswer));
+
         isOpen = false;
         aCase.setOpen(false);
     }

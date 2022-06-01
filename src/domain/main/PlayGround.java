@@ -14,6 +14,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayGround
 {
@@ -95,7 +96,7 @@ public class PlayGround
         c.getVoting().printResult(u2);
         c.getVoting().addVote(0,u3);
         c.getVoting().printResult(u3);
-        c.getVoting().addVote(1,u4);
+        c.getVoting().addVote(2,u4);
         c.getVoting().printResult(u4);
 
         //Print Active Score
