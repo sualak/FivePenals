@@ -135,16 +135,19 @@ public class User extends BaseEntety
     public void changeFirstName(String firstname)
     {
         personal.setvName(firstname);
+        super.setUpdatedAt();
     }
 
     public void changeLastName(String lastname)
     {
         personal.setnName(lastname);
+        super.setUpdatedAt();
     }
 
     public void changeTitel(Personal.Titel titel)
     {
         personal.setTitel(titel);
+        super.setUpdatedAt();
     }
 
     public void changeLanguage(int key, DataBasePIdentifiers db)
