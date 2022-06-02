@@ -30,6 +30,8 @@ public class PlayGround
         User u2 = new User("c.schramme@gmx.at", "christopher1", Personal.Titel.DOKTOR, "Christopher", "Schramme", LocalDate.of(2001,11,7));
         User u3 = new User("d.hinteregger@spengergasse.at", "lHgw018sPvsS", Personal.Titel.MASTER, "David", "Hinteregger", LocalDate.of(1996,6,26));
         User u4 = new User();
+        User u3 = new User();
+        User u4 = new User("mpol@gmx.at","mpol1234", Personal.Titel.DOKTOR,"Mario","Polak",LocalDate.of(1990,03,14));
 
         //case
         Case c = new Case("Grade of the Project", "Wich grade", u0);
