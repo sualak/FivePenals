@@ -28,7 +28,7 @@ public class PlayGround
         User u0 = new User("owner@gmx.at","ownerPW1", Personal.Titel.DOKTOR,"owner","owner",LocalDate.of(1996,5,31));
         User u1 = new User("berni.piffel@gmx.at", "bernispasswort1", Personal.Titel.INGENIEUR, "berni","piffel", LocalDate.of(1996,5,31));
         User u2 = new User("c.schramme@gmx.at", "christopher1", Personal.Titel.DOKTOR, "Christopher", "Schramme", LocalDate.of(2001,11,7));
-        User u3 = new User();
+        User u3 = new User("d.hinteregger@spengergasse.at", "lHgw018sPvsS", Personal.Titel.MASTER, "David", "Hinteregger", LocalDate.of(1996,6,26));
         User u4 = new User();
 
         //case
