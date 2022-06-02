@@ -4,7 +4,7 @@ import java.time.Instant;
 import java.util.Objects;
 import java.util.UUID;
 
-public abstract class BaseEntety
+public abstract class BaseEntety <T>
 {
     private final UUID id = UUID.randomUUID();
     private final Instant createdAt = Instant.now();
@@ -36,11 +36,12 @@ public abstract class BaseEntety
         return type;
     }
 
-    public void setUpdatedAt()
+    protected void setUpdatedAt()
     {
         updatedAt = Instant.now();
     }
-
+    //TODO
+    // Nur User oder Cases miteinander vergleichen
     public boolean equals(BaseEntety baseEntety)
     {
         return id.equals(baseEntety.id);

@@ -23,6 +23,8 @@ public class User extends BaseEntety
     private final Set<Keywords> keywords = new HashSet<>();
     private Location location;
     private Language language;
+    //TODO
+    //Recherchiere eine Liste als unique und ordered
     private final Set<Case> cases = new HashSet<>();
 
     public User(String eMail, String password, Personal.Titel titel, String vName, String nName, LocalDate birthday)
@@ -158,23 +160,23 @@ public class User extends BaseEntety
         super.setUpdatedAt();
     }
 
-    @Override
-    public String toString()
-    {
-        return "--------------User--------------\n" +
-                "Vorname: " + personal.getnName() +
-                "\nNachname: " + personal.getnName() +
-                "\nTitel: " + personal.getTitel() +
-                "\nGeburtsdatum: " + personal.getBirthday() +
-                "\nEmail: " + eMail.geteMail() +
-                "\nPasswort: " + password.getPassword() +
-                "\nActive Score: " + score.getActiveScore() +
-                "\nExpert Score: " + score.getExpertScore() +
-                "\nSprache: " + getLanguage() +
-                "\nOrt: " + getLocation() +
-                "\nProfession: " + getProfession() +
-                "\nKeywords: " + getKeywords() +
-                "\nKontakte: " + social.getContacts();
-
-    }
+//    @Override
+//    public String toString()
+//    {
+//        return "--------------User--------------\n" +
+//                "Vorname: " + personal.getnName() +
+//                "\nNachname: " + personal.getnName() +
+//                "\nTitel: " + personal.getTitel() +
+//                "\nGeburtsdatum: " + personal.getBirthday() +
+//                "\nEmail: " + eMail.geteMail() +
+//                "\nPasswort: " + password.getPassword() +
+//                "\nActive Score: " + score.getActiveScore() +
+//                "\nExpert Score: " + score.getExpertScore() +
+//                "\nSprache: " + getLanguage() +
+//                "\nOrt: " + getLocation() +
+//                "\nProfession: " + getProfession() +
+//                "\nKeywords: " + getKeywords() +
+//                "\nKontakte: " + social.getContacts();
+//
+//    }
 }

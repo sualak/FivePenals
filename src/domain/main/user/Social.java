@@ -17,9 +17,9 @@ public class Social
 
     public Social(User owner)
     {
-        //todo ensurer muss geschrieben werden
+
         this.owner = Objects.requireNonNull(owner,"owner");
-        //this.owner =Ensure.ensureOwnerNotNull(owner,"user");
+
     }
 
 
@@ -60,7 +60,7 @@ public class Social
     // no need to clear from sets, to prevent request-spams.
     public boolean handleRequest(User friendRequest, boolean confirm){
         Ensure.ensureContactIsRequesting(friendRequest,incomingRequests);
-        //todo request not handled jet, maybe with showRequests() ?
+
         if(confirm) {
             contacts.add(friendRequest);
             friendRequest.getSocial().contacts.add(owner);
@@ -73,7 +73,7 @@ public class Social
         }
         return confirm;
     }
-    //todo als elsif in handleRequest. alles andre macht keinen sinn du heisl!!!!!!!
+
     private void addWhenOutgoingIsAccapted(User user)
     {
         if (user.getSocial().handleRequest(owner, true)) {

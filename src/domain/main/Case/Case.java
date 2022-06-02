@@ -12,7 +12,7 @@ import validation.Ensure;
 import java.io.IOException;
 import java.util.*;
 
-public class Case extends BaseEntety
+public class Case extends BaseEntety <Case>
 {
     private String titel;
     //private final GIdentifiers identifiers = new GIdentifiers();
